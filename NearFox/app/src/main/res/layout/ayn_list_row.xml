@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bootstrap="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/rounded_corner"
+    android:onClick="on_click_ayn_post"
+    >
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:id="@+id/ayn_user_container"
+        android:orientation="horizontal"
+        android:weightSum="15"
+        >
+
+        <ImageView
+            android:paddingLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:id="@+id/ayn_user_image"
+            />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical"
+            android:layout_weight="13"
+            android:layout_gravity="center"
+            android:paddingLeft="20dp"
+            android:paddingTop="5dp"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="15dp"
+                android:textSize="13sp"
+                android:text="User name"
+                android:gravity="center_vertical"
+                android:layout_gravity="center_vertical"
+                android:id="@+id/ayn_user_name"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="15dp"
+                android:textSize="10sp"
+                android:text="period"
+                android:layout_gravity="center_vertical"
+                android:gravity="center_vertical"
+                android:id="@+id/ayn_period"
+                />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ayn_user_container"
+        android:paddingLeft="20dp"
+        android:paddingTop="2dp"
+        android:paddingBottom="2dp"
+        android:paddingRight="20dp"
+        android:id="@+id/ayn_title_container"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textSize="20sp"
+            android:text="Who stole my underwear"
+            android:id="@+id/ayn_title"
+            />
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:paddingLeft="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_below="@id/ayn_title_container"
+        android:layout_marginTop="2dp"
+        >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="5dp"
+            android:orientation="horizontal"
+            >
+
+            <!--<TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Watch | "
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2"
+                android:id="@+id/ayn_watch"
+                />-->
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/ayn_post_upvote_container"
+                android:orientation="horizontal"
+                >
+
+                <!--<ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/vote_up"
+                    android:onClick="up_voted_by_user"
+                    android:id="@+id/ayn_upvote_image"
+                    />-->
+                <!--<com.beardedhen.androidbootstrap.FontAwesomeText
+                    android:id="@+id/ayn_upvote_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    bootstrap:fa_icon="fa-thumbs-up"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/upvote_downvote_comment"
+                    android:onClick="up_voted_by_user"
+                />-->
+
+                <TextView
+                    android:id="@+id/ayn_upvote_count"
+                    android:layout_marginLeft="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:layout_gravity="bottom"
+                    android:textSize="@dimen/upvote_downvote_comment_count_size"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginLeft="30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/ayn_post_downvote_container"
+                android:orientation="horizontal"
+                >
+
+                <!--<ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/vote_down"
+                    android:onClick="down_voted_by_user"
+                    android:id="@+id/ayn_downvote_image"
+                    />-->
+
+                <!--<com.beardedhen.androidbootstrap.FontAwesomeText
+                    android:id="@+id/ayn_downvote_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    bootstrap:fa_icon="fa-thumbs-down"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/upvote_downvote_comment"
+                    android:onClick="down_voted_by_user"
+                    />-->
+
+                <TextView
+                    android:id="@+id/ayn_downvote_count"
+                    android:layout_marginLeft="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:layout_gravity="bottom"
+                    android:textSize="@dimen/upvote_downvote_comment_count_size"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_marginLeft="40dp"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+
+                <!--<ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/ayn_comment"
+                    android:onClick="on_click_comment"
+                    />-->
+
+                <!--<com.beardedhen.androidbootstrap.FontAwesomeText
+                    android:id="@+id/ayn_comment_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    bootstrap:fa_icon="fa-comment"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/upvote_downvote_comment"
+                    android:onClick="on_click_comment"
+                    />-->
+
+                <TextView
+                    android:id="@+id/ayn_comment_count"
+                    android:layout_marginLeft="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:layout_gravity="bottom"
+                    android:textSize="@dimen/upvote_downvote_comment_count_size"
+                    />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:text="FALSE"
+        android:id="@+id/ayn_whether_upvoted"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="FALSE"
+        android:id="@+id/ayn_whether_downvoted"
+        android:visibility="gone"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="FALSE"
+        android:id="@+id/ayn_whether_commented"
+        android:visibility="gone"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:id="@+id/ayn_user_image_url"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:id="@+id/ayn_image_url"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:id="@+id/ayn_id"
+        />
+
+</RelativeLayout>

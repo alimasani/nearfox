@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:isScrollContainer="true"
+    android:orientation="vertical"
+    android:padding="20dp"
+    android:scrollbars="none">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Title of Event"
+            android:textColor="#000"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/titleofevent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:background="@drawable/edittext_background"
+            android:singleLine="true"
+            android:textCursorDrawable="@drawable/cursorbackground"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Event Description"
+            android:textColor="#000"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/eventdescription"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginTop="3dp"
+            android:background="@drawable/edittext_background"
+            android:gravity="top|left"
+			android:textCursorDrawable="@drawable/cursorbackground"
+            android:textSize="16sp" />
+
+        
+
+        <LinearLayout
+            android:id="@+id/layEventDates"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnAddAnotherTiming"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@android:color/transparent"
+            android:text="+ Add Another Event Timing"
+            android:textColor="#000"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/eventtype"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="10dp"
+            android:text="Event Type"
+            android:textColor="#000"
+            android:textSize="16sp" />
+
+        <RadioGroup
+            android:id="@+id/radioPaymentType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true">
+
+            <RadioButton
+                android:id="@+id/radioFree"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@drawable/radio"
+                android:padding="5dp"
+                android:text="Free" />
+
+            <RadioButton
+                android:id="@+id/radioPaid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@drawable/radio"
+                android:padding="5dp"
+                android:text="Paid" />
+
+
+        </RadioGroup>
+
+        <LinearLayout
+            android:id="@+id/laypaid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Amount (INR)"
+                android:textColor="#000"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/amount"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:background="@drawable/edittext_background"
+                android:gravity="top|left"
+				android:inputType="phone"
+				android:digits="1234567890"
+                android:singleLine="true"
+                android:textCursorDrawable="@drawable/cursorbackground"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Link to Buy"
+                android:textColor="#000"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/linktobuy"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+				android:singleLine="false"
+                android:background="@drawable/edittext_background"
+                android:gravity="top|left"
+                android:textCursorDrawable="@drawable/cursorbackground"
+                android:textSize="16sp" />
+
+
+        </LinearLayout>
+		
+		<TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Venue Name"
+            android:textColor="#000"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/edtVenueName"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:background="@drawable/edittext_background"
+            android:gravity="top|left"
+			android:singleLine="true"
+            android:inputType="textPersonName"
+            android:textCursorDrawable="@drawable/cursorbackground"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Address"
+            android:textColor="#000"
+            android:textSize="16sp" />
+
+        <in.nearfox.nearfox.view.PlaceAutoComplete
+
+            android:id="@+id/venue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:background="@drawable/edittext_background"
+            android:gravity="top|left"
+            android:maxLines="3"
+            android:singleLine="false"
+            android:textCursorDrawable="@drawable/cursorbackground"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Organiser Name"
+            android:textColor="#000"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/edtOrganisationName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:background="@drawable/edittext_background"
+            android:gravity="top|left"
+            android:inputType="textPersonName"
+            android:textCursorDrawable="@drawable/cursorbackground"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Contact Email"
+            android:textColor="#000"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/edtOrganisationEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:background="@drawable/edittext_background"
+            android:gravity="top|left"
+            android:inputType="textEmailAddress"
+            android:textCursorDrawable="@drawable/cursorbackground"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Contact Number"
+            android:textColor="#000"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/edtContactNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:background="@drawable/edittext_background"
+            android:digits="0123456789"
+            android:gravity="top|left"
+            android:inputType="phone"
+            android:maxLength="10"
+            android:textCursorDrawable="@drawable/cursorbackground"
+            android:textSize="16sp" />
+
+		<TextView
+            android:id="@+id/uploadFile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:drawableLeft="@drawable/ic_upload"
+            android:drawablePadding="10dp"
+            android:gravity="center_vertical"
+            android:text="Upload Files"
+            android:textColor="#000"
+            android:textSize="18sp" />
+			
+        <Button
+            android:id="@+id/btnSubmit"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="50dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/submit_button_background"
+            android:text="Submit"
+            android:textColor="#fff"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+</ScrollView>

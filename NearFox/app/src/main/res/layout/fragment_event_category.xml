@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/circular_loader_layout"
+        android:id="@+id/loader_container"/>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@android:id/list">
+    </ListView>
+
+    <include layout="@layout/network_error"
+        android:id="@+id/network_error"
+        />
+
+</LinearLayout>

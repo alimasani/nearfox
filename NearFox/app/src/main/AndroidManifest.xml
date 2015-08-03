@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="in.nearfox.nearfox" >
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+    <uses-permission android:name="com.google.android.c2dm.intent.RECEIVE" />
+
+    <permission
+        android:name="com.example.gcm.permission.C2D_MESSAGE"
+        android:protectionLevel="signature" />
+
+    <uses-permission android:name="com.example.gcm.permission.C2D_MESSAGE" />
+
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true" />
+
+    <meta-data
+        android:name="com.google.android.gms.analytics.globalConfigResource"
+        android:resource="@xml/global_tracker" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/app_icon"
+        android:label="@string/app_name"
+        android:name=".CustomApplication"
+        android:theme="@style/AppTheme"
+        >
+
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <provider
+            android:name="com.facebook.FacebookContentProvider"
+            android:authorities="com.facebook.app.FacebookContentProvider1052557678111937"
+            android:exported="true" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyCG15oIcbIpV9DE_D3YrdyrAK7C2gPXyiA" />
+
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/MyMainTheme.Toolbar"
+            android:screenOrientation="portrait"
+            android:label="@string/app_name" >
+        </activity>
+
+        <activity
+            android:name=".ChangeCurrentLocationActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/MyMainTheme.Toolbar"/>
+        <activity
+            android:name=".SubmitActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/MyMainTheme.Toolbar"/>
+
+        <activity
+            android:name=".ChangeLocationActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/MyMainTheme.Toolbar"/>
+        <activity
+            android:name=".ChooseLocationActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/overlay_theme"/>
+        <activity
+            android:name=".WalkThroughActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/overlay_theme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+
+        </activity>
+
+        <activity
+            android:name=".fragments.AYNFragment"
+            android:screenOrientation="portrait"
+            android:label="@string/app_name"
+            android:theme="@style/MyMainTheme.Toolbar"
+            >
+        </activity>
+
+        <activity
+            android:name=".authentication.LoginActivity"
+            android:label="Nearfox"
+            android:screenOrientation="portrait"
+            >
+        </activity>
+
+        <activity
+            android:name=".SingleEvent"
+            android:label="@string/title_activity_single_event"
+            android:screenOrientation="portrait"
+            android:theme="@style/overlay_theme" >
+        </activity>
+
+        <activity
+            android:name=".SingleNews"
+            android:label="News"
+            android:screenOrientation="portrait"
+            android:theme="@style/overlay_theme"
+            >
+        </activity>
+
+        <activity
+            android:name=".SingleAynQuestion"
+            android:configChanges="keyboardHidden|orientation"
+            android:label="@string/title_activity_single_ayn_posts1"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" >
+        </activity>
+
+        <activity
+            android:name=".EventCategory"
+            android:label="@string/title_activity_event_category"
+            android:screenOrientation="portrait" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".EventFilter" />
+        </activity>
+
+        <activity
+            android:name=".NoActionActivity"
+            android:theme="@style/overlay_theme"
+            android:screenOrientation="portrait"
+            >
+        </activity>
+
+        <activity
+            android:name=".EventFilter"
+            android:label="@string/title_activity_event_filter"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="53612879654242141355489947983429dcb91a3e" />
+    </application>
+
+</manifest>

@@ -1,0 +1,135 @@
+<resources>
+    <string name="app_name">Nearfox</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_single_event">SingleEvent</string>
+    <string name="title_activity_event_filter">Event Categories</string>
+    <string name="title_activity_event_category">EventCategory</string>
+    <string name="title_activity_single_locality">SingleLocality</string>
+    <string name="title_activity_single_news">SingleNews</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="btn_logout_from_google">Logout from Google</string>
+    <string name="btn_revoke_access">Revoke Access</string>
+    <string name="facebook_app_id">1052557678111937</string>
+    <string name="mix_panel_token">719bc1d04a1b4c2c71a8b11915d840e4</string>
+
+    <!-- g plus information variables-->
+    <string name="GOOGLE_PLUS_INFO">google_plus_info</string>
+    <string name="USER_NAME">user_name</string>
+    <string name="USER_LAST_NAME">user_last_name</string>
+    <string name="USER_EMAIL">user_email</string>
+    <string name="USER_PROFILE">user_profile</string>
+    <string name="USER_IMAGE_URL">user_image_url</string>
+    <string name="SENDER_ID">73106556197</string>
+
+    <!-- facebook information variables-->
+    <string name="FACEBOOK_INFO">facebook_info</string>
+    <integer name="FACEBOOK_IMAGE_SIZE">40</integer>
+
+    <string name="GOOGLE_OR_FACEBOOK">google_or_facebook</string>
+    <string name="SELECTED_GOOGLE">google_selected</string>
+    <string name="SELECTED_FACEBOOK">facebook_selected</string>
+    <string name="SELECTED_GUEST">invalid_user</string>
+
+    <!-- GCM information variables -->
+    <string name="GCM_INFO">gcm_info</string>
+    <string name="GCM_REG_ID">gcm_reg_id</string>
+    <string name="GCM_APP_VERSION">gcm_app_version</string>
+    <string name="MESSAGE_TYPE">message_type</string>
+    <string name="NEWS_NOTIFICATION">news_notification</string>
+    <string name="NEWS_BODY">news_body</string>
+    <string name="ID">id</string>
+    <string name="TITLE">title</string>
+    <string name="NEWS_IMAGE">news_image</string>
+    <string name="CATEGORY">category</string>
+    <string name="PERIOD">period</string>
+    <string name="NEWS_DETAILS">news_details</string>
+
+
+    <!-- Notification details -->
+    <string name="NEW_NEWS">new_news</string>
+
+    <!-- navigation drawer -->
+    <!-- Nav Drawer Menu Items -->
+    <string name="drawer_open">Slider Menu Opened</string>
+
+    <string name="drawer_close">Slider Menu Closed</string>
+
+
+
+    <!-- for storing names and icons of navigaton drawer-->
+    <string-array name="nav_drawer_items">
+        <item >My Location</item>
+        <item >About Us</item>
+        <item >Terms &amp; Policies</item>
+    </string-array>
+
+    <array name="nav_drawer_icons_unseleted">
+        <item>@drawable/ic_action_location_2</item>
+        <item>@drawable/ic_about_us</item>
+        <item>@drawable/ic_terms_conditions</item>
+        <item>@drawable/ic_logout</item>
+        <item>@drawable/ic_login_black</item>
+    </array>
+
+    <string name="desc_list_item_icon">Item Icon</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_single_ayn_post">SingleAynPost</string>
+    <string name="title_activity_single_ayn_posts1">SingleAynPosts1</string>
+
+    <string name="default_comment_text">Write your answer</string>
+
+    <string name="LAST_USED_SCREEN_KEY">last_used_screen_key</string>
+    <string name="LAST_USED_SCREEN">last_used_screen</string>
+    <integer name="NEWS_SCREEN">0</integer>
+    <integer name="EVETS_SCREEN">1</integer>
+    <integer name="ASK_SCREEN">2</integer>
+
+    <string name="CURRENT_TIME_STAMP_NEWS">current_time_stamp_news</string>
+    <string name="CURRENT_TIME_STAMP_EVENTS">current_time_stamp_events</string>
+    <string name="CURRENT_TIME_STAMP_AYNQUESTIONS">current_time_stamp_ayn_questions</string>
+    <string name="CURRENT_TIME_STAMP">current_time_stamp</string>
+
+    <string name="HOME_LOCATION">home_socation_set</string>
+    <string name="IF_HOME_LOCATION_SET">if_home_location_set</string>
+    <string name="home_latitude">home_latitude</string>
+    <string name="home_longitude">home_longitude</string>
+    <string name="current_latitude">current_latitude</string>
+    <string name="current_longitude">current_longitude</string>
+
+
+    <string name="title_activity_about_us">AboutUs</string>
+    <string name="title_activity_terms_and_policies">TermsAndPolicies</string>
+    <string name="title_activity_no_action">NoActionActivity</string>
+
+
+    <!-- about us and terms and condition string constants -->
+    <string name="about_us">With a ton load of information available on the internet, it is extremely difficult for all of us to track and follow the things we love. And that’s where we think the problem is and we are here to solve that! We are on a mission to deliver news and information which matters to the people in the most convenient way possible.</string>
+    <string name="terms_of_use">Welcome! We’re happy to have you here, and hope you find Nearfox delightful to use. Nearfox.com and our subsidiaries and affiliates (collectively ‘Nearfox’) provide you with access to a variety of services, including but not limited to the Nearfox website, Nearfox’s mobile applications and all the products and services available through our website (collectively the ‘Services’). These Terms of Use govern access to and use of nearfox.com’s Services. This Website is owned and operated by M/s Zip Infosolutions Private Limited, a company incorporated under the Indian Companies Act, 2013. The term ‘Nearfox’ or ‘us’ or ‘we’ or ‘our’ or ‘company’ refers to the owners, managers, employees of Nearfox. The term ‘you’ refers to the user or viewer of the Nearfox Services. These Terms of Use (“Terms”) apply to your use of Nearfox Services. Please read these Terms carefully; by using Nearfox Services, you agree to be bound by them.</string>
+    <string name="content">What you see on our Services may be protected by one or more laws regarding intellectual property. You’ll find a few different types of material on our service:</string>
+    <string name="service_use_guidelines">You promise to use the service only for lawful purposes, and to not violate the rights of third parties Our Community Guidelines, which are part of these Terms, contain more information about acceptable and unacceptable uses of the service. We have zero tolerance for the content which doesn’t comply with our community guidelines. Any such unacceptable use, including posting or collecting content that is obscene, pornographic, gory, illegal, threatening or harassing, excessively violent or promoting the harm of self or others, may result in immediate termination of your account and suspension of service access in the future.</string>
+    <string name="your_content">You can post your own content on Nearfox, including articles, photos, comments and other content. You—and you alone—own the rights to the content you create and publish through Nearfox. By posting it, you give us permission to use your content to do what we reasonably believe necessary to provide our service both now and in the future including storing, displaying, reproducing and distributing your content. This might also include promoting your content with partner companies or services for broader broadcast, distribution or publication via Nearfox. You’re responsible for the content you publish through Nearfox and assume all risk associated with it, including anyone else’s reliance on its accuracy or legal claims that might stem from publication. By posting content on Nearfox, you represent that you have the necessary rights to publish that material, and that doing so doesn’t conflict with any licenses you may have granted to others. We don’t always pre-screen everyone’s content. However, we have the right to review and remove or disable access to any content through Nearfox for any reason. We assume no liability for anything that you or anyone else publishes through Nearfox. Nearfox also contains links to websites, services, content and advertisements that we don’t own or control. We don’t necessarily endorse or assume responsibility for that stuff, either.</string>
+    <string name="privacy">Our Privacy Policy explains our collection and use of information on the service, including information you may consider personal. You consent to the information practices described in that policy as it may be updated from time to time.</string>
+    <string name="security">We take the security of Nearfox very seriously. We use reasonable practices to protect the security of your account and data associated with it, but we can’t guarantee that someone won’t be able to defeat our security measures. Please let us know immediately if you discover any compromise of your account. We are always on the lookout for security loopholes in Nearfox. If you discover a vulnerability in our service, we would be grateful for your report and encourage you to let us know immediately. To report a vulnerability, please email contact@nearfox.com</string>
+    <string name="eligibility_criteria">As per Indian laws, user(s) must be at least 18 years of age to be eligible to use our services.</string>
+    <string name="copyright">Nearfox respects the intellectual property rights of others and expects users of the Services to do the same. We will respond to notices of alleged copyright infringement that comply with applicable law and are properly provided to us. If you believe that your Content has been copied in a way that constitutes copyright infringement, please send us an email on contact@nearfox.com with your contact information. We reserve the right to remove Content alleged to be infringing or otherwise illegal without prior notice and at our sole discretion. In appropriate circumstances, Nearfox will also terminate a user\'s account if the user is determined to be a repeat infringer.</string>
+    <string name="changes_to_our_service">Nearfox is a dynamic product, always evolving and (hopefully) getting better. As a result, we may change, eliminate or restrict access to our products or any part of our service at any time, for any reason, with or without advance notice. And we may do so with respect to one, some or all of our users.</string>
+    <string name="disclaimers">Nearfox is provided “as is” without any warranties, express or implied. Nearfox disclaims all warranties and conditions of merchantability, fitness for a particular purpose and non-infringement.</string>
+    <string name="limitation_of_liability">To the fullest extent allowed by law, Nearfox shall not be liable for any consequential or punitive damages, or any loss of profits or revenues, whether incurred directly or indirectly, or any loss of data, use, goodwill or other intangible losses resulting from (A) your access to, use of, inability to access or inability to use Nearfox; (B) any third party conduct or content on Nearfox, including any defamatory, offensive or illegal conduct of third parties; or (C) any unauthorized access, use or alteration of your content.</string>
+    <string name="arbitration">If you become disgruntled with Nearfox for any reason, we’d like the opportunity to work out our differences informally. We strongly encourage you to contact us at contact@nearfox.com and we’ll do our best to resolve the dispute in good faith.</string>
+    <string name="jurisdiction">The terms of this agreement are exclusively based on and subject to Indian law. You hereby consent to the exclusive jurisdiction and venue of courts in Mumbai, India in all disputes arising out of or relating to the use of Nearfox Services website. Use of Services is unauthorized in any jurisdiction that does not give effect to all provisions of these terms and conditions, including without limitation this paragraph.</string>
+    <string name="entire_agreement">These Terms and our Privacy Policy constitute the entire agreement between you and Nearfox. If any provision of these Terms is found to be unenforceable, the remaining provisions will continue to be in full force and effect.</string>
+    <string name="modification">These Terms may be modified from time to time. You agree to accept any changes or revisions to these Terms by continuing to use Nearfox.</string>
+    <string name="contact">We welcome all questions, concerns and feedback you might have about these terms. If you have suggestions for us, let us know at</string>
+    <string name="how_to_share_content_on_nearfox">Nearfox is a community of people who love to share and discover inspired and inspiring content. If you stick to the following recommendations, we’ll all have a great time here. Consume. Be yourself. Share what you love and comment earnestly on others’ work. Quality interactions help our ecosystem thrive and strengthen our community. Comment.  Don\'t be a jerk. We have zero tolerance for comments that are racist, hateful, threatening or disrespectful, and reserve the right to remove comments that: \n - Are considered likely to disrupt, provoke, attack or offend others. \n-  Are racist, sexist, homophobic, sexually explicit, abusive or otherwise objectionable. \n- Contain swear words or other language likely to offend. \n- Break the law or condone or encourage unlawful activity.  (This includes breach of copyright, defamationand contempt of court.) \n- Advertise products or services for profit or gain.\n- Are seen to impersonate someone else. \n- Include personal information such as phone numbers, postal or email addresses. \n- Contain links to other websites which break our Community Guidelines.\n- Are considered to be spam.\nHave fun!  You’ll be amazed by what you see on Nearfox. Enjoy exploring, collecting, saving and sharing beautiful, inspiring, cool and interesting content.</string>
+    <string name="how_not_to_share_content_on_nearfox">Nearfox is not a place to consume or curate adult or illegal content. Just don’t do it.  Accounts that persistently showcase inappropriate content will be closed and may face further disciplinary action. Other don’ts: Don’t share illegal or prohibited content such as child pornography, encouragement of illegal acts or infringing intellectual property. We will respond to notices of alleged copyright infringement as set forth in our Terms of Service. Don’t share overly violent or dangerous content, including hate speech or abuse of any kind such as the promotion of self-mutilation, eating disorders or drug abuse. Don’t share content that qualifies as phishing or spam or that might abuse or present a security threat to Nearfox. Don’t share pornography, graphic sexual content or nudity intended to titillate. Don’t threaten, stalk, bully or harass other members of the community.  Credible real-world threats will be taken seriously and may be escalated to law enforcement. Don’t misrepresent your affiliation with any person or entity.  We reserve the right to reclaim your account name if you are impersonating a real person or brand. Don’t invade the privacy or misuse the personal identity of someone else. This includes posting someone’s real-world identity, personal details or contact information without his or her permission.</string>
+    <string name="privacy_policy">Here we are trying our best to explain you in simple terms what information we collect about you, what we use it for, and the few situations in which we share it with others. Please read this privacy policy carefully. It  applies to all interactions you have with Nearfox’s products and services.</string> <string name="the_information_we_collect">You don’t need to create an account to see the content available on our services. If you want to contribute and interact with the content we will ask you to create an account where you can sign in through an account you already have with another service, such as Google, Facebook.      Your user profile helps you customize your account and connect with other Nearfox users. Your profile automatically includes your name and username. To help you connect with other Nearfox users and to personalize your Nearfox experience, we may ask for additional information, including your contacts, location or a list of the apps on your mobile device.      We receive some other information automatically when you use Nearfox. This includes data about your device, software, operating system, your IP address and the date and time of each request you make to Nearfox.  So that we can make your Nearfox experience better, we collect information about how you view, contribute and interact with content through Nearfox. If you want to email something you see through Nearfox to a friend who isn’t already a Nearfox account holder, we may keep their email address for the purpose of sending such email and improving our services. Recipients may contact us at contact@nearfox.com to request that we remove this information from our database.</string>
+    <string name="how_we_use_and_disclose_your_information">A big part of Nearfox is sharing content you find interesting. That’s why your Nearfox profile, the comments you post and the content you contribute are all public. Aside from that, we use your information to keep Nearfox running, better understand how you use our service, customize your experience, prevent abuse and improve Nearfox. We share your personally identifiable information only under these circumstances:  \n- With your consent, after letting you know what information will be shared, and with whom. \n- If we believe it’s reasonably necessary to comply with a law, regulation or legal process. If we’re going to release your information, our policy is to provide you with reasonable advance notice under the circumstances unless we’re prohibited from doing so by law or court order. We may disclose your information without giving you prior notice if we believe it’s necessary to prevent imminent and serious bodily harm to a person. Nothing in this privacy policy is intended to limit any legal objections or defenses you might have to efforts by third parties to compel disclosure of your information, including legal orders from the government. \n- To third parties helping us offer and improve our service, such as those providing Nearfox certain technical tools and analytics that help us understand how people use Nearfox so we can make it better. \n- If we sell, transfer or otherwise share some or all of our assets, including the information identified in this privacy policy, in connection with a merger and acquisition. We may also share non- personally identifiable, non-aggregate information with companies that help us improve</string>
+
+    <string name="temp_checking">r</string>
+    <string name="CURRENT_NEWS_OFFSET_KEY">current_news_offset_key</string>
+    <string name="CURRENT_NEWS_OFFSET">current_news_offset</string>
+
+    <integer name="ayn_rounded_image_corner">100</integer>
+</resources>

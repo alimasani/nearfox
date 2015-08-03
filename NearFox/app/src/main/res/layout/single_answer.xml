@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bootstrap="http://schemas.android.com/apk/res-auto"
+    android:background="@color/ayn_answer_background"
+    >
+
+    <LinearLayout
+        android:paddingTop="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/ayn_comment_user_container"
+        android:orientation="horizontal"
+        android:paddingBottom="8dp"
+        >
+
+        <LinearLayout
+            android:layout_width="72dp"
+            android:layout_height="wrap_content"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            >
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:id="@+id/ayn_comment_user_image"
+                android:scaleType="centerCrop"
+                android:src="@drawable/default_person"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingRight="16dp"
+            android:orientation="vertical"
+            >
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="13"
+                android:layout_gravity="center"
+                android:paddingTop="5dp"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:text="Anonymous"
+                    android:gravity="center_vertical"
+                    android:layout_gravity="center_vertical"
+                    android:id="@+id/ayn_comment_user_name"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:text="2 weeks ago"
+                    android:layout_gravity="center_vertical|right"
+                    android:id="@+id/ayn_comment_period"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    />
+
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ayn_comment_user_container"
+                android:paddingRight="16dp"
+                android:id="@+id/ayn_comment_title_container"
+                android:orientation="vertical"
+                >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="14sp"
+                    android:textColor="@color/black"
+                    android:text="Hi i took my car ford figo basic model at g.p road opposite to express avenue"
+                    android:id="@+id/ayn_comment_title"
+                    />
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="10"
+                        >
+
+                        <LinearLayout
+                            android:paddingTop="8dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/ayn_comment_upvote_container"
+                            android:orientation="horizontal"
+                            android:paddingBottom="8dp"
+                            android:layout_weight="4"
+                            android:gravity="center"
+                            android:onClick="up_vote_container_clicked"
+                            >
+
+                            <com.beardedhen.androidbootstrap.FontAwesomeText
+                                android:id="@+id/ayn_comment_upvote_image"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                bootstrap:fa_icon="fa-thumbs-up"
+                                android:textColor="@color/counter_text_color"
+                                android:textSize="@dimen/upvote_downvote_comment_answer"
+                                />
+
+                            <TextView
+                                android:id="@+id/ayn_comment_upvote_count"
+                                android:layout_marginLeft="5dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="0"
+                                android:layout_gravity="bottom"
+                                android:textSize="@dimen/upvote_downvote_comment_count_size_answer"
+                                />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:paddingTop="8dp"
+                            android:paddingBottom="8dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/ayn_comment_downvote_container"
+                            android:orientation="horizontal"
+                            android:layout_weight="4"
+                            android:gravity="center"
+                            android:onClick="down_vote_container_clicked"
+                            >
+
+                            <com.beardedhen.androidbootstrap.FontAwesomeText
+                                android:id="@+id/ayn_comment_downvote_image"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                bootstrap:fa_icon="fa-thumbs-down"
+                                android:textColor="@color/counter_text_color"
+                                android:textSize="@dimen/upvote_downvote_comment_answer"
+                                />
+
+                            <TextView
+                                android:id="@+id/ayn_comment_downvote_count"
+                                android:layout_marginLeft="5dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="0"
+                                android:layout_gravity="bottom"
+                                android:textSize="@dimen/upvote_downvote_comment_count_size_answer"
+                                />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </FrameLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:text="FALSE"
+        android:id="@+id/ayn_comment_whether_upvoted"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="FALSE"
+        android:id="@+id/ayn_comment_whether_downvoted"
+        android:visibility="gone"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:id="@+id/ayn_comment_user_image_url"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:id="@+id/ayn_comment_id"
+        />
+
+</RelativeLayout>
