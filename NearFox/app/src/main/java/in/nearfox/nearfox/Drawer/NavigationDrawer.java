@@ -237,12 +237,18 @@ public class NavigationDrawer {
     }
 
     private void sendCurrentLocation() {
-        Intent intent = new Intent(context, ChangeCurrentLocationActivity.class);
-        intent.putExtra("isSignedIn", signedIn);
-        context.startActivity(intent);
-        activity.finish();
+        {
+            Intent intent = new Intent(context, ChangeCurrentLocationActivity.class);
+            intent.putExtra("isSignedIn", signedIn);
+            context.startActivity(intent);
+
+        }
     }
 
+    /**
+     *
+     * @param whichActivity
+     */
     private void startNewActivity(int whichActivity) {
 
         Intent intent = new Intent(context, NoActionActivity.class);

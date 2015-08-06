@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
@@ -29,7 +30,6 @@ public class SubmitAYNFragment extends Fragment {
     private View rootView;
 
     private EditText submitQuestion;
-    private PlaceAutoComplete submitLocality;
 
     public SubmitAYNFragment() {
         // Required empty public constructor
@@ -43,14 +43,6 @@ public class SubmitAYNFragment extends Fragment {
         context = getActivity();
 
         submitQuestion = (EditText) rootView.findViewById(R.id.submitQuestion);
-        submitLocality = (PlaceAutoComplete) rootView.findViewById(R.id.submitLocality);
-
-        rootView.findViewById(R.id.uploadFile).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                uploadFileClicked();
-            }
-        });
 
         rootView.findViewById(R.id.btnSubmit).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,7 +51,21 @@ public class SubmitAYNFragment extends Fragment {
             }
         });
 
+        submitQuestion.setOnTouchListener(new View.OnTouchListener() {
 
+            public boolean onTouch(View view, MotionEvent event) {
+                // TODO Auto-generated method stub
+                if (view.getId() ==R.id.submitQuestion) {
+                    view.getParent().requestDisallowInterceptTouchEvent(true);
+                    switch (event.getAction()&MotionEvent.ACTION_MASK){
+                        case MotionEvent.ACTION_UP:
+                            view.getParent().requestDisallowInterceptTouchEvent(false);
+                            break;
+                    }
+                }
+                return false;
+            }
+        });
 
        // getLocations();
         return rootView;
@@ -73,6 +79,8 @@ public class SubmitAYNFragment extends Fragment {
             submitQuestion.setError("Question must be 10 character long.");
             submitQuestion.requestFocus();
         } else {
+            rootView.findViewById(R.id.btnSubmit).setEnabled(false);
+            rootView.findViewById(R.id.btnSubmit).setClickable(false);
             postQuestion();
         }
     }
@@ -82,39 +90,29 @@ public class SubmitAYNFragment extends Fragment {
         Preference preference = new Preference(getActivity());
         restClient.getApiService().postQuestions(preference.getLoggedEmail(), submitQuestion.getText().toString()
                 ,  submitCallback);
-
     }
 
-    private void uploadFileClicked() {
-        Intent intent = new Intent(getActivity(), FileExplore.class);
-
-        startActivityForResult(intent, 108);
-    }
-
-    private Callback<DataModels.HomeLocation> submitCallback = new Callback<DataModels.HomeLocation>() {
+    private Callback<DataModels.Location> submitCallback = new Callback<DataModels.Location>() {
         @Override
-        public void success(DataModels.HomeLocation homeLocation, Response response2) {
+        public void success(DataModels.Location homeLocation, Response response2) {
             if(homeLocation.isSuccess()) {
-                new ApplicationHelper(getActivity()).showMessageDialog("Your Question submitted successfully");
+                new ApplicationHelper(getActivity()).showMessageDialog(homeLocation.getMessage());
                 submitQuestion.setText("");
-                submitLocality.setText("");
             }
+            rootView.findViewById(R.id.btnSubmit).setEnabled(true);
+            rootView.findViewById(R.id.btnSubmit).setClickable(true);
         }
 
         @Override
         public void failure(RetrofitError error) {
-            new ApplicationHelper(getActivity()).showMessageDialog(error.getLocalizedMessage());
+            if(error.isNetworkError())
+                new ApplicationHelper(context).showMessageDialog("There seems to be a connectivity issue. Please check your internet connection.");
+            else
+                new ApplicationHelper(getActivity()).showMessageDialog("Something wrong must have happened, please try again.");
             Log.d("KKK", error.toString());
+            rootView.findViewById(R.id.btnSubmit).setEnabled(true);
+            rootView.findViewById(R.id.btnSubmit).setClickable(true);
         }
     };
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 108 && resultCode == -1) {
-            TextView uploadFile = (TextView) rootView.findViewById(R.id.uploadFile);
-            uploadFile.setText(data.getStringExtra("fileName"));
-            uploadFile.setTag(data.getStringExtra("fileName"));
-        }
-    }
 }

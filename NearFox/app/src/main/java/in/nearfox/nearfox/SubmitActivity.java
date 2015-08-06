@@ -148,7 +148,7 @@ public class SubmitActivity extends AppCompatActivity implements NavigationDrawe
             @Override
             public void onClick(View v) {
 
-                startActivity(new Intent(SubmitActivity.this, MainActivity.class));
+
                 finish();
             }
         });
@@ -157,7 +157,7 @@ public class SubmitActivity extends AppCompatActivity implements NavigationDrawe
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if(keyCode == KeyEvent.KEYCODE_BACK){
-            startActivity(new Intent(SubmitActivity.this, MainActivity.class));
+
             finish();
         }
         return super.onKeyDown(keyCode, event);
@@ -370,11 +370,7 @@ public class SubmitActivity extends AppCompatActivity implements NavigationDrawe
             editor.apply();
 //            Log.d(TAG, "logging out from google") ;
         }
-        Intent intent = new Intent(this, MainActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-        startActivity(intent);
+        finish();
     }
 
     private String stringFromResource(int id) {

@@ -29,7 +29,6 @@ public class SingleNews extends Activity {
 
     public final String TAG = this.getClass().getName();
     public Context context;
-    ImageView favourite;
 
     private String id;
     private String title;
@@ -51,7 +50,7 @@ public class SingleNews extends Activity {
         this.period = intent.getStringExtra(PERIOD);
         this.source = intent.getStringExtra(SOURCE);
 
-        favourite=(ImageView)findViewById(R.id.favourite);
+
 
         populateSingleNews();
     }
@@ -104,37 +103,9 @@ public class SingleNews extends Activity {
                 startActivity(sendIntent);
             }
         });
-        favourite.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(changeFavouriteIcon()) {
-                    DBManager dbManager = new DBManager(SingleNews.this);
-                    dbManager.insertFavorite("News", id);
-                } else {
-                    DBManager dbManager = new DBManager(SingleNews.this);
-                    dbManager.deleteFavorite("News", id);
-                }
-            }
-        });
 
-        DBManager dbManager = new DBManager(SingleNews.this);
-        if(dbManager.getFavorite("News", id) > 0) {
-            changeFavouriteIcon();
-        }
 
     }
 
-    private boolean changeFavouriteIcon(){
-        if(favourite.getTag()==null) {
-            favourite.setImageResource(R.drawable.abc_btn_rating_star_on_mtrl_alpha);
-            favourite.setTag("rt");
-            return true;
-        }
-        else{
-            favourite.setImageResource(R.drawable.abc_btn_rating_star_off_mtrl_alpha);
-            favourite.setTag(null);
-            return false;
-        }
-    }
 
 }

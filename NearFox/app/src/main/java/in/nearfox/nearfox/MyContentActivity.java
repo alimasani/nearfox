@@ -28,26 +28,26 @@ import com.mixpanel.android.mpmetrics.MixpanelAPI;
 import com.nineoldandroids.view.ViewHelper;
 import com.nineoldandroids.view.ViewPropertyAnimator;
 
+import in.nearfox.nearfox.Drawer.MyContentNavigationAdapter;
 import in.nearfox.nearfox.Drawer.NavigationDrawer;
 import in.nearfox.nearfox.authentication.LoginActivity;
 import in.nearfox.nearfox.authentication.gplus.GPlusLogoutMoitor;
 import in.nearfox.nearfox.fragments.AYNFragment1;
 import in.nearfox.nearfox.fragments.NewsFragment;
 import in.nearfox.nearfox.models.NavigationAdapter;
-import in.nearfox.nearfox.utilities.LocationHelper;
 import in.nearfox.nearfox.utilities.MyCallback;
 import in.nearfox.nearfox.utilities.Preference;
 import io.fabric.sdk.android.Fabric;
 
 import static in.nearfox.nearfox.authentication.gplus.GPlusMonitor.mGoogleApiClient;
 
-public class MainActivity extends AppCompatActivity implements NavigationDrawer.LogoutListener, ObservableScrollViewCallbacks, MyCallback.LocationListener {
+public class MyContentActivity extends AppCompatActivity implements NavigationDrawer.LogoutListener, ObservableScrollViewCallbacks, MyCallback.LocationListener {
 
     //    user profile information
     private static String GOOGLE_OR_FACEBOOK = null;
     ViewPager mViewPager;
     View mHeaderView;
-    NavigationAdapter mNavigationAdapter;
+    MyContentNavigationAdapter mNavigationAdapter;
     Toolbar mToolbarView;
     NavigationDrawer mNavigationDrawer;
     Context context;
@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawer.
     }
 
     public static String checkLoggedIn(Context context) {
-        return MainActivity.getUser(context);
+        return MyContentActivity.getUser(context);
     }
 
     private static String getUser(Context context) {
@@ -188,7 +188,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawer.
         mViewPager = (ViewPager) findViewById(R.id.pager);
 //        mpagerTabStrip = (PagerTabStrip)findViewById(R.id.sliding_tabs) ;
 
-        mNavigationAdapter = new NavigationAdapter(getSupportFragmentManager());
+        mNavigationAdapter = new MyContentNavigationAdapter(getSupportFragmentManager());
 
         mViewPager.setAdapter(mNavigationAdapter);
 //        mpagerTabStrip.setTabIndicatorColor(getResources().getColor(R.color.fbutton_color_belize_hole));
@@ -358,7 +358,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawer.
             NewsFragment.deleteLastTimeStamp(this);
         }
 
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, MyContentActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
@@ -600,13 +600,13 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawer.
 
     @Override
     public LatLng getCurrentLocation() {
-        Preference preference = new Preference(MainActivity.this);
+        Preference preference = new Preference(MyContentActivity.this);
         return preference.getCurrentLocationLatLng();
     }
 
     @Override
     public LatLng getHomeLocation() {
-        Preference preference = new Preference(MainActivity.this);
+        Preference preference = new Preference(MyContentActivity.this);
         return preference.getHomeLatLng();
     }
 

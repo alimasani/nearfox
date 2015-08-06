@@ -28,7 +28,7 @@ import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
-public class NewsFragment extends android.support.v4.app.Fragment implements MyCallback.PopulateNewsInAdapter {
+public class MyNewsFragment extends android.support.v4.app.Fragment implements MyCallback.PopulateNewsInAdapter {
 
     public static final String ARG_INITIAL_POSITION = "ARG_INITIAL_POSITION";
     String TAG = this.getClass().getName();
@@ -55,7 +55,7 @@ public class NewsFragment extends android.support.v4.app.Fragment implements MyC
             /**
              * start inserting in db
              */
-            MThread mThread = new MThread(NewsFragment.this, news, false);
+            MThread mThread = new MThread(MyNewsFragment.this, news, false);
             mThread.start();
         }
 
@@ -100,7 +100,7 @@ public class NewsFragment extends android.support.v4.app.Fragment implements MyC
                 /**
                  * start inserting in db only if data on server changed
                  */
-                MThread mThread = new MThread(NewsFragment.this, news, true);
+                MThread mThread = new MThread(MyNewsFragment.this, news, true);
                 mThread.start();
             } else {
                 firstCommitDone = true;
@@ -123,7 +123,7 @@ public class NewsFragment extends android.support.v4.app.Fragment implements MyC
         }
     };
 
-    public NewsFragment() {
+    public MyNewsFragment() {
         // Required empty public constructor
     }
 

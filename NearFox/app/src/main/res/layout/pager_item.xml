@@ -8,52 +8,30 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="fitXY"
-        android:background="@android:color/transparent" />
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_alignParentBottom="true"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="#EFAD4C">
-        <ImageView
-            android:id="@+id/imgWTBack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:visibility="gone"
-            android:layout_alignParentLeft="true"
-            android:src="@drawable/walk_through_back_arrow"/>
-        <ImageView
-            android:id="@+id/imgWTNext1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:layout_centerInParent="true"
-            android:src="@drawable/walk_through_next_arrow"/>
-        <ImageView
-            android:id="@+id/imgWTNext2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:visibility="gone"
-            android:layout_alignParentRight="true"
-            android:src="@drawable/walk_through_next_arrow"/>
-        <TextView
-            android:id="@+id/imgWTNext3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:visibility="gone"
-            android:gravity="right"
-            android:text="GET STARTED"
-            android:textColor="#FFFFFF"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            android:layout_centerVertical="true"
-            android:layout_toRightOf="@+id/imgWTBack"
-            android:src="@drawable/walk_through_next_arrow"/>
-        </RelativeLayout>
+        android:layout_above="@+id/txtMsg"
+        android:src="@drawable/walk_through_image_1"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:background="@android:color/transparent"
+        android:layout_alignParentTop="true" />
+
+    <TextView
+        android:id="@+id/txtMsg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:textColor="#fff"
+        android:gravity="center_horizontal"
+        android:background="@android:color/transparent"
+        android:textSize="16sp"
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"/>
+
+
+
+
 </RelativeLayout>

@@ -5,9 +5,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import in.nearfox.nearfox.R;
@@ -27,6 +29,7 @@ public class SubmitNewsFragment extends Fragment {
     private View rootView;
     private EditText submitStoryTitle, submitNewsStory, submitContactNumber;
     private PlaceAutoComplete submitLocality;
+    private ScrollView scrollView;
 
 
     public SubmitNewsFragment() {
@@ -40,6 +43,8 @@ public class SubmitNewsFragment extends Fragment {
         rootView = inflater.inflate(R.layout.frament_submit_news, container, false);
         context = getActivity();
 
+        scrollView = (ScrollView) rootView.findViewById(R.id.scrollNews);
+
         submitStoryTitle = (EditText) rootView.findViewById(R.id.submitStoryTitle);
 
         submitNewsStory = (EditText) rootView.findViewById(R.id.submitNewsStory);
@@ -47,6 +52,7 @@ public class SubmitNewsFragment extends Fragment {
         submitLocality = (PlaceAutoComplete) rootView.findViewById(R.id.submitLocality);
 
         submitContactNumber = (EditText) rootView.findViewById(R.id.submitContactNumber);
+
 
         rootView.findViewById(R.id.uploadFile).setVisibility(View.GONE);
         rootView.findViewById(R.id.uploadFile).setOnClickListener(new View.OnClickListener() {
@@ -59,15 +65,29 @@ public class SubmitNewsFragment extends Fragment {
         rootView.findViewById(R.id.btnSubmit).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                submitClicked();
+                submitClicked(v);
             }
         });
+        submitNewsStory.setOnTouchListener(new View.OnTouchListener() {
 
+            public boolean onTouch(View view, MotionEvent event) {
+                // TODO Auto-generated method stub
+                if (view.getId() ==R.id.submitNewsStory) {
+                    view.getParent().requestDisallowInterceptTouchEvent(true);
+                    switch (event.getAction()&MotionEvent.ACTION_MASK){
+                        case MotionEvent.ACTION_UP:
+                            view.getParent().requestDisallowInterceptTouchEvent(false);
+                            break;
+                    }
+                }
+                return false;
+            }
+        });
         //getLocations();
         return rootView;
     }
 
-    private void submitClicked() {
+    private void submitClicked(View v) {
         if (submitStoryTitle.getText().toString().trim().length() == 0) {
             submitStoryTitle.setError("Please fill title of your story");
             submitStoryTitle.requestFocus();
@@ -88,6 +108,8 @@ public class SubmitNewsFragment extends Fragment {
             submitContactNumber.requestFocus();
         } else {
             try {
+                v.setEnabled(false);
+                v.setClickable(false);
                 String location = String.format("{\"locations\":[{\"location_name\":\"%s\"}]}",
                         submitLocality.getText().toString().trim());
                 RestClient restClient = new RestClient(RestClient.BASE_URL1);
@@ -101,21 +123,29 @@ public class SubmitNewsFragment extends Fragment {
         }
     }
 
-    retrofit.Callback<DataModels.HomeLocation> callback = new retrofit.Callback<DataModels.HomeLocation>() {
+    retrofit.Callback<DataModels.Location> callback = new retrofit.Callback<DataModels.Location>() {
         @Override
-        public void success(DataModels.HomeLocation news, Response response) {
+        public void success(DataModels.Location news, Response response) {
             if(news.isSuccess()) {
-                new ApplicationHelper(getActivity()).showMessageDialog( "Your News submitted successfully");
+                new ApplicationHelper(getActivity()).showMessageDialog(news.getMessage());
                 submitStoryTitle.setText("");
                 submitNewsStory.setText("");
                 submitContactNumber.setText("");
                 submitLocality.setText("");
+
+                rootView.findViewById(R.id.btnSubmit).setEnabled(true);
+                rootView.findViewById(R.id.btnSubmit).setClickable(true);
             }
         }
 
         @Override
         public void failure(RetrofitError error) {
-            new ApplicationHelper(getActivity()).showMessageDialog(error.toString());
+            if(error.isNetworkError())
+                new ApplicationHelper(context).showMessageDialog("There seems to be a connectivity issue. Please check your internet connection.");
+            else
+                new ApplicationHelper(getActivity()).showMessageDialog("Something wrong must have happened, please try again.");
+            rootView.findViewById(R.id.btnSubmit).setEnabled(true);
+            rootView.findViewById(R.id.btnSubmit).setClickable(true);
         }
     };
 

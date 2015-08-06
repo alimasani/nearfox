@@ -196,7 +196,7 @@ public class DBManager {
             contentValues.put(DBHelper.NEWS_EXCERPT, news.getNews_excerpt());
             contentValues.put(DBHelper.SOURCE_NAME, news.getSource_name());
 
-            Log.d(TAG, "title: " + news.getTitle());
+            Log.d(TAG, "Insert: " + contentValues.toString());
 
             database.insert(DBHelper.NEWS_TABLE_NAME, null, contentValues);
         }

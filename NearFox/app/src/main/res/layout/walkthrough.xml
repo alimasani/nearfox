@@ -8,8 +8,42 @@
 
     <android.support.v4.view.ViewPager xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/pager"
+        android:layout_above="@+id/bottom"
+
         android:layout_width="match_parent"
         android:layout_height="match_parent">
     </android.support.v4.view.ViewPager>
+    <RelativeLayout
+        android:id="@+id/bottom"
+        android:layout_width="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_height="wrap_content"
+        android:padding="25dp"
+        android:background="#10659D"
+        >
+        <ImageView
+            android:id="@+id/imgDots"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:visibility="visible"
 
+            android:src="@drawable/dot1"
+            android:layout_centerHorizontal="true" />
+
+
+        <Button
+            android:id="@+id/btnGetStarted"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFFFFF"
+            android:layout_marginTop="15dp"
+            android:padding="15dp"
+            android:textStyle="bold"
+            android:text="GET STARTED"
+            android:textColor="#2C81BA"
+            android:layout_below="@+id/imgDots"
+            android:textSize="20sp"
+            android:layout_centerInParent="true"/>
+    </RelativeLayout>
 </RelativeLayout>

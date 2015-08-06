@@ -186,13 +186,13 @@ public class ApiServices {
                       @Field("content") String content,
                       @Field("image_url") String image_url,
                       @Field("locations") String locations,
-                      Callback<DataModels.HomeLocation> callback) ;
+                      Callback<DataModels.Location> callback) ;
 
         @FormUrlEncoded
         @POST("/ayn/question/{email}")
         void postQuestions(@Path("email") String email,
                            @Field("content") String data,
-                           Callback<DataModels.HomeLocation> callback) ;
+                           Callback<DataModels.Location> callback) ;
 
         @FormUrlEncoded
         @POST("/events/{email}")
@@ -212,13 +212,13 @@ public class ApiServices {
                         @Field("address") String address,
 
 
-                        Callback<DataModels.HomeLocation> callback) ;
+                        Callback<DataModels.Location> callback) ;
 
         @FormUrlEncoded
         @POST("/setUserLocation/{email}")
         void setLocation(@Path("email") String email,
                          @Field("location_name") String data,
-                         Callback<DataModels.HomeLocation> callback) ;
+                         Callback<DataModels.Location> callback) ;
 
 
         /*@GET("/zipnews/mobileapp/test/index.php")

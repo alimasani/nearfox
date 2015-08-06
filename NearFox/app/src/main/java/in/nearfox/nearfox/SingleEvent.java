@@ -89,7 +89,6 @@ public class SingleEvent extends Activity implements ObservableScrollViewCallbac
 
     private String event_id;
 
-    ImageView favourite;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -182,7 +181,6 @@ public class SingleEvent extends Activity implements ObservableScrollViewCallbac
         // setting the content view
         setContentView(R.layout.activity_single_event);
         //setSupportActionBar((Toolbar) findViewById(R.id.toolbar)) ;
-        favourite=(ImageView)findViewById(R.id.favourite);
         // getting views from layout
         imageContainer = (LinearLayout) findViewById(R.id.image_container);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -265,39 +263,9 @@ public class SingleEvent extends Activity implements ObservableScrollViewCallbac
             }
         });
 
-        favourite.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(changeFavouriteIcon()) {
-                    DBManager dbManager = new DBManager(SingleEvent.this);
-                    dbManager.insertFavorite("Event", SingleEvent.this.event_id);
-                } else {
-                    DBManager dbManager = new DBManager(SingleEvent.this);
-                    dbManager.deleteFavorite("Event", SingleEvent.this.event_id);
-                }
-
-
-            }
-        });
-
-        DBManager dbManager = new DBManager(SingleEvent.this);
-        if(dbManager.getFavorite("Event", event_id) > 0) {
-            changeFavouriteIcon();
-        }
     }
 
-    private boolean changeFavouriteIcon(){
-        if(favourite.getTag()==null) {
-            favourite.setImageResource(R.drawable.abc_btn_rating_star_on_mtrl_alpha);
-            favourite.setTag("rt");
-            return true;
-        }
-        else{
-            favourite.setImageResource(R.drawable.abc_btn_rating_star_off_mtrl_alpha);
-            favourite.setTag(null);
-            return false;
-        }
-    }
+
 
 
     public void single_event_on_click_map(View view) {

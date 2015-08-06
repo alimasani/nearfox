@@ -1331,6 +1331,32 @@ public class DataModels {
         }
     }
 
+    public class Location {
+        @Expose
+        private boolean success;
+
+        @Expose
+        private String message;
+
+        public void setSuccess(boolean success) {
+            this.success = success;
+        }
+
+        public boolean isSuccess() {
+
+            return success;
+        }
+
+        public void setMessage(String message) {
+            this.message = message;
+        }
+
+        public String getMessage() {
+
+            return message;
+        }
+    }
+
     public Event returnEventObject() {
         return (new Event());
     }

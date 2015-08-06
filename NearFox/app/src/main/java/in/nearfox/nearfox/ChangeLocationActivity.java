@@ -226,9 +226,9 @@ public class ChangeLocationActivity extends AppCompatActivity {
         restClient.getApiService().setLocation(preference.getLoggedInEmail(), location, callback);
     }
 
-    retrofit.Callback<DataModels.HomeLocation> callback = new retrofit.Callback<DataModels.HomeLocation>() {
+    retrofit.Callback<DataModels.Location> callback = new retrofit.Callback<DataModels.Location>() {
         @Override
-        public void success(DataModels.HomeLocation news, Response response) {
+        public void success(DataModels.Location news, Response response) {
             if(news.isSuccess()) {
                 new ApplicationHelper(ChangeLocationActivity.this).showMessageDialog("Your location updated successfully").setOnDismissListener(new DialogInterface.OnDismissListener() {
                     @Override

@@ -24,27 +24,27 @@ import java.util.ArrayList;
 public class GooglePlacesAutocompleteAdapter extends ArrayAdapter implements Filterable {
 
     private ArrayList resultList;
-    private static final String LOG_TAG = "Google Places Autocomplete";
+    private static final String LOG_TAG = "Google Places Auto";
 
     private static final String PLACES_API_BASE = "https://maps.googleapis.com/maps/api/place";
 
     private static final String TYPE_AUTOCOMPLETE = "/autocomplete";
 
     private static final String OUT_JSON = "/json";
-private Context context;
+    private Context context;
 
-//private static final  String API_KEY="AIzaSyDNYlRkNAeCnZJGr0Cbe9a7Od4KDnaXeQM";
+    //private static final  String API_KEY="AIzaSyDNYlRkNAeCnZJGr0Cbe9a7Od4KDnaXeQM";
     private static final String API_KEY = "AIzaSyAqzjJw8jtNF_GF-JgovUYV8EAeszHDWx4";
 
 
     public GooglePlacesAutocompleteAdapter(Context context, int textViewResourceId) {
 
         super(context, textViewResourceId);
-        this.context=context;
+        this.context = context;
 
     }
 
-  // @Override
+    // @Override
 //  public View getView(int position, View convertView, ViewGroup parent) {
 ////       convertView = super.getView(position, convertView, parent);
 ////       ((TextView) convertView).setWidth(500);
@@ -92,7 +92,6 @@ private Context context;
                     resultList = autocomplete(constraint.toString());
 
 
-
                     // Assign the data to the FilterResults
 
                     filterResults.values = resultList;
@@ -106,19 +105,23 @@ private Context context;
             }
 
 
-
             @Override
 
             protected void publishResults(CharSequence constraint, FilterResults results) {
+                try {
+                    if (results != null && results.count > 0) {
 
-                if (results != null && results.count > 0) {
+                        notifyDataSetChanged();
 
-                    notifyDataSetChanged();
+                    } else {
+                        // notifyDataSetChanged();
 
-                } else {
+                        notifyDataSetInvalidated();
 
-                    notifyDataSetInvalidated();
 
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
 
             }
@@ -131,7 +134,6 @@ private Context context;
     public static ArrayList autocomplete(String input) {
 
         ArrayList resultList = null;
-
 
 
         HttpURLConnection conn = null;
@@ -154,7 +156,6 @@ private Context context;
             conn = (HttpURLConnection) url.openConnection();
 
             InputStreamReader in = new InputStreamReader(conn.getInputStream());
-
 
 
             // Load the results into a StringBuilder
@@ -216,7 +217,6 @@ private Context context;
             Log.e(LOG_TAG, "Cannot process JSON results", e);
 
         }
-
 
 
         return resultList;
