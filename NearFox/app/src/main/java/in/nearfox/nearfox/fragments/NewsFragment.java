@@ -95,7 +95,7 @@ public class NewsFragment extends android.support.v4.app.Fragment implements MyC
              * saving current timestamp in sharedpreference
              */
             saveCurrentTimeStamp(currentTimeStamp);
-
+            //dataChanged = true;
             if (dataChanged) {
                 /**
                  * start inserting in db only if data on server changed

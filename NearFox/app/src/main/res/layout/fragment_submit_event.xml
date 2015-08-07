@@ -2,14 +2,15 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:isScrollContainer="true"
     android:orientation="vertical"
-    android:padding="20dp"
+
     android:scrollbars="none">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:padding="20dp"
+        android:paddingBottom="40dp"
         android:orientation="vertical">
 
         <TextView
@@ -41,7 +42,10 @@
             android:id="@+id/eventdescription"
             android:layout_width="match_parent"
             android:layout_height="100dp"
+            android:scrollbarStyle="insideInset"
+            android:overScrollMode="always"
             android:layout_marginTop="3dp"
+            android:scrollbars="vertical"
             android:background="@drawable/edittext_background"
             android:gravity="top|left"
 			android:textCursorDrawable="@drawable/cursorbackground"

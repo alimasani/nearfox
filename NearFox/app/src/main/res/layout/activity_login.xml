@@ -20,7 +20,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/nearfox_logo"
+            android:src="@drawable/ic_launcher"
             android:layout_marginTop="40dp"
             android:scaleType="fitXY"
             android:layout_gravity="center_horizontal"
@@ -44,8 +44,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_gravity="center_horizontal|bottom"
-        android:paddingLeft="32dp"
-        android:paddingRight="32dp"
+
         android:layout_marginBottom="16dp"
         >
 
@@ -53,6 +52,8 @@
             android:id="@+id/gplus_btn_sign_in"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:paddingLeft="32dp"
+            android:paddingRight="32dp"
             android:layout_gravity="center_horizontal"
             />
 
@@ -63,10 +64,18 @@
             android:layout_height="50dp"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginRight="32dp"
             android:layout_gravity="center_horizontal"
             />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:text="We won't post anything without your consent"
+            android:layout_gravity="center_horizontal"
+            android:textSize="16sp"
+            android:layout_marginTop="5dp"/>
 
         <TextView
             android:layout_marginTop="70dp"

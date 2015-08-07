@@ -22,6 +22,7 @@ import java.io.IOException;
 
 import in.nearfox.nearfox.MainActivity;
 import in.nearfox.nearfox.R;
+import in.nearfox.nearfox.SubmitActivity;
 import in.nearfox.nearfox.fragments.NewsFragment;
 import in.nearfox.nearfox.models.DataModels;
 import in.nearfox.nearfox.utilities.LocationHelper;
@@ -249,6 +250,19 @@ public class GCMHandler {
     }
 
     public void startAnyActivity(boolean which) {
+//        Preference preference = new Preference(context);
+//        if(preference.isSubmitClicked()){
+////            preference.setSubmitClicked(false);
+//            Intent intent = new Intent(context, SubmitActivity.class);
+//            intent.putExtra("index", preference.getLastUsed());
+//            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+//            ((Activity) context).findViewById(R.id.loader_container).setVisibility(View.GONE);
+//            context.startActivity(intent);
+//            return;
+//        }
+
         Intent intent = new Intent(context, MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);

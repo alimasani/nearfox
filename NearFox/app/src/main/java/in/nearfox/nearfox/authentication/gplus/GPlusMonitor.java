@@ -29,8 +29,10 @@ import java.io.InputStream;
 
 import in.nearfox.nearfox.MainActivity;
 import in.nearfox.nearfox.R;
+import in.nearfox.nearfox.SubmitActivity;
 import in.nearfox.nearfox.gcm.GCMHandler;
 import in.nearfox.nearfox.utilities.LocationHelper;
+import in.nearfox.nearfox.utilities.Preference;
 
 /**
  * Created by tangbang on 6/13/2015.
@@ -377,12 +379,26 @@ public class GPlusMonitor implements View.OnClickListener,
 
     public void startAnyActivity() {
 
+
         if (regId == null || regId.isEmpty() || regId.equals("")) {
 
             Log.d(TAG, "regid not found, registering on gcm3");
             gcmHandler = new GCMHandler(context, gName, "", gProfile, gEmail, gImageURL, context.getResources().getString(R.string.SELECTED_GOOGLE), locationHelper);
         } else {
 
+//            Preference preference = new Preference(context);
+//            if(preference.isSubmitClicked()){
+////                preference.setSubmitClicked(false);
+//                Intent intent = new Intent(context, SubmitActivity.class);
+//                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+//                intent.putExtra("index", preference.getLastUsed());
+//                context.startActivity(intent);
+//                loaderContainer.setVisibility(View.VISIBLE);
+//
+//                return;
+//            }
             Intent intent = new Intent(context, MainActivity.class);
 
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

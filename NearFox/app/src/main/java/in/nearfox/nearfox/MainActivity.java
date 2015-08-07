@@ -1,5 +1,6 @@
 package in.nearfox.nearfox;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -36,6 +37,7 @@ import in.nearfox.nearfox.fragments.NewsFragment;
 import in.nearfox.nearfox.models.NavigationAdapter;
 import in.nearfox.nearfox.utilities.LocationHelper;
 import in.nearfox.nearfox.utilities.MyCallback;
+import in.nearfox.nearfox.utilities.Preference;
 import io.fabric.sdk.android.Fabric;
 
 import static in.nearfox.nearfox.authentication.gplus.GPlusMonitor.mGoogleApiClient;
@@ -52,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawer.
     Context context;
     boolean signedIn;
     String TAG = this.getClass().getName();
-    LocationHelper locationHelper;
+   // LocationHelper locationHelper;
     SlidingTabLayout mSlidingTabLayout;
 
     // for storing state of scrolling
@@ -125,6 +127,8 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawer.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
         setContentView(R.layout.activity_main);
 
 
@@ -138,7 +142,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawer.
          * Initiating location helper for
          * getting users location
          */
-        locationHelper = new LocationHelper(this);
+        //locationHelper = new LocationHelper(this);
 
 
         /**
@@ -176,10 +180,23 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawer.
         mNavigationDrawer = new NavigationDrawer(this, signedIn, savedInstanceState);
 
 
+
+
         /**
          * inititiating view pager
          */
         initViewPager();
+
+        Preference preference = new Preference(context);
+                if(preference.isSubmitClicked()){
+//            preference.setSubmitClicked(false);
+                    Intent intent = new Intent(context, SubmitActivity.class);
+                    intent.putExtra("index", preference.getLastUsed());
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                    context.startActivity(intent);
+                    return;
+                }
+        preference.setSubmitClicked(false);
     }
 
     private void initViewPager() {
@@ -295,10 +312,11 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawer.
             Intent intent = new Intent(this, SubmitActivity.class);
             intent.putExtra("index", index);
             startActivity(intent);
-            finish();
         }
         else
         {
+            Preference preference = new Preference(MainActivity.this);
+            preference.setSubmitClicked(true);
             mNavigationDrawer.setSelectedIndex(3);
         }
     }
@@ -600,17 +618,17 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawer.
 
     @Override
     public LatLng getCurrentLocation() {
-        if (locationHelper == null)
-            return null;
-        return locationHelper.getCurrentLocation();
+        Preference preference = new Preference(MainActivity.this);
+        return preference.getCurrentLocationLatLng();
     }
 
     @Override
     public LatLng getHomeLocation() {
-        if (locationHelper == null)
-            return null;
-        return locationHelper.getHomeLocation();
+        Preference preference = new Preference(MainActivity.this);
+        return preference.getHomeLatLng();
     }
+
+
 
     enum Direction {INCREASING, DECREASING}
 }

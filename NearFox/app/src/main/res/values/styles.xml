@@ -11,8 +11,10 @@
         <item name="colorPrimaryDark">@color/fbutton_color_belize_hole</item>
         <item name="colorAccent">@color/accent</item>
 
-        <item name="android:textSelectHandleLeft">@drawable/text_select_handle_left_mtrl_alpha</item>
-        <item name="android:textSelectHandleRight">@drawable/text_select_handle_right_mtrl_alpha</item>
+        <item name="android:textSelectHandleLeft">@drawable/text_select_handle_left_mtrl_alpha
+        </item>
+        <item name="android:textSelectHandleRight">@drawable/text_select_handle_right_mtrl_alpha
+        </item>
         <item name="android:textSelectHandle">@drawable/text_select_handle_middle_mtrl_alpha</item>
     </style>
 
@@ -21,12 +23,15 @@
         <item name="colorPrimaryDark">@color/primaryDark</item>
         <item name="colorAccent">@color/accent</item>
 
-        <item name="android:textSelectHandleLeft">@drawable/text_select_handle_left_mtrl_alpha</item>
-        <item name="android:textSelectHandleRight">@drawable/text_select_handle_right_mtrl_alpha</item>
+        <item name="android:textSelectHandleLeft">@drawable/text_select_handle_left_mtrl_alpha
+        </item>
+        <item name="android:textSelectHandleRight">@drawable/text_select_handle_right_mtrl_alpha
+        </item>
         <item name="android:textSelectHandle">@drawable/text_select_handle_middle_mtrl_alpha</item>
 
         <item name="android:spinnerItemStyle">@style/MyMainTheme.SpinnerItemStyle</item>
-        <item name="android:spinnerDropDownItemStyle">@style/MyMainTheme.SpinnerDropDownItemStyle</item>
+        <item name="android:spinnerDropDownItemStyle">@style/MyMainTheme.SpinnerDropDownItemStyle
+        </item>
     </style>
 
     <style name="MyMainTheme.SpinnerDropDownItemStyle" parent="Widget.AppCompat.DropDownItem.Spinner">
@@ -34,15 +39,21 @@
         <item name="android:textColor">#212121</item>
     </style>
 
+
+
     <style name="MyMainTheme.SpinnerItemStyle" parent="Widget.AppCompat.TextView.SpinnerItem">
         <item name="android:textColor">#ffffff</item>
     </style>
 
+
+
     <style name="overlay_theme" parent="Base.Theme.AppCompat.Light">
         <item name="windowActionBar">false</item>
 
-        <item name="android:textSelectHandleLeft">@drawable/text_select_handle_left_mtrl_alpha</item>
-        <item name="android:textSelectHandleRight">@drawable/text_select_handle_right_mtrl_alpha</item>
+        <item name="android:textSelectHandleLeft">@drawable/text_select_handle_left_mtrl_alpha
+        </item>
+        <item name="android:textSelectHandleRight">@drawable/text_select_handle_right_mtrl_alpha
+        </item>
         <item name="android:textSelectHandle">@drawable/text_select_handle_middle_mtrl_alpha</item>
     </style>
 

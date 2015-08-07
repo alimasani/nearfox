@@ -53,19 +53,23 @@ public class GeneralHelper {
         int currentMinute = c.get(Calendar.MINUTE);
 
         String[] splittedStart_time = start_time.split(" ")[0].split(":");
-        int startHour = Integer.parseInt(splittedStart_time[0]);
-        int startMinute = Integer.parseInt(splittedStart_time[1]);
+        try {
+            int startHour = Integer.parseInt(splittedStart_time[0]);
+            int startMinute = Integer.parseInt(splittedStart_time[1]);
 
-        if (startHour >= currentHour){
+            if (startHour >= currentHour){
 
-            if (startHour - currentHour >= 2){
-                return start_time;
+                if (startHour - currentHour >= 2){
+                    return start_time;
+                }else{
+
+                    return "Ongoing";
+                }
             }else{
-
                 return "Ongoing";
             }
-        }else{
-            return "Ongoing";
+        } catch (NumberFormatException e) {
+            return start_time;
         }
     }
 

@@ -34,7 +34,7 @@ public class LocationHelper implements LocationListener, GoogleApiClient.Connect
 
     public LocationHelper(Context context) {
         this.context = context;
-        createLocationRequest();
+        //createLocationRequest();
         mGoogleApiClient = new GoogleApiClient.Builder(context)
                 .addApi(LocationServices.API)
                 .addConnectionCallbacks(this)
@@ -60,8 +60,8 @@ public class LocationHelper implements LocationListener, GoogleApiClient.Connect
         if (mGoogleApiClient.isConnecting()) {
             Log.d(TAG, "Still connecting");
         } else if (mGoogleApiClient.isConnected()) {
-            LocationServices.FusedLocationApi.removeLocationUpdates(
-                    mGoogleApiClient, this);
+//            LocationServices.FusedLocationApi.removeLocationUpdates(
+//                    mGoogleApiClient, this);
             Log.d(TAG, "Location update stopped .......................");
         }
     }
@@ -90,8 +90,8 @@ public class LocationHelper implements LocationListener, GoogleApiClient.Connect
     }
 
     protected void startLocationUpdates() {
-        LocationServices.FusedLocationApi.requestLocationUpdates(
-                mGoogleApiClient, mLocationRequest, this);
+//        LocationServices.FusedLocationApi.requestLocationUpdates(
+//                mGoogleApiClient, mLocationRequest, this);
         Log.d(TAG, "Location update started ..............: ");
     }
 

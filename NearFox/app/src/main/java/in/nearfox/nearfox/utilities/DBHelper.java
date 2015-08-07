@@ -84,7 +84,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String SHARES = "shares";
 
 
-    public static int version = 1;
+    public static int version = 2;
     public static DBHelper dbHelper;
 
 
@@ -169,7 +169,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 + ALL_DAY + " BOOLEAN ) ;");*/
 
         database.execSQL("create table if not exists " + AYN_QUESTIONS_TABLE_NAME + " ( " + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT , "
-                + AYN_QUESTION_ID + " TEXT , "
+                + AYN_QUESTION_ID + " INTEGER , "
                 + CONTENT + " TEXT , "
                 + QUESTION_AUTHOR + " TEXT , "
                 + PERIOD + " TEXT , "
@@ -184,11 +184,8 @@ public class DBHelper extends SQLiteOpenHelper {
                 + ANSWERED + " BOOLEAN , "
                 + ANSWERS + " INTEGER ) ;");
 
-        database.execSQL("create table if not exists " + FAVORITE_TABLE_NAME + " ( " + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT , "
-                + TITLE + " TEXT , " + FAVORITE_ID + " TEXT ) ;");
-
-        database.execSQL("create table if not exists " + LOCATION_TABLE_NAME + " ( " + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT , "
-                + PRE_LOCATION + " TEXT ) ;");
+        /*
+        */
     }
 
 
@@ -204,6 +201,11 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        db.execSQL("create table if not exists " + FAVORITE_TABLE_NAME + " ( " + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT , "
+                + TITLE + " TEXT , " + FAVORITE_ID + " TEXT ) ;");
+
+        db.execSQL("create table if not exists " + LOCATION_TABLE_NAME + " ( " + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT , "
+                + PRE_LOCATION + " TEXT ) ;");
     }
 
     public void checkEventsParticularTable(String category){

@@ -1,73 +1,39 @@
-<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/root"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
-    <RelativeLayout
+    <LinearLayout
+        android:id="@+id/header"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:orientation="vertical">
 
-        <LinearLayout
-            android:id="@+id/header"
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/strip_height"
             android:background="?attr/colorPrimary"
-            android:orientation="vertical">
+            android:minHeight="?attr/actionBarSize"
+            app:popupTheme="@style/Theme.AppCompat.Light.DarkActionBar"
+            app:theme="@style/Toolbar" />
 
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/strip_height"
-                android:background="?attr/colorPrimary"
-                android:minHeight="?attr/actionBarSize"
-                app:popupTheme="@style/Theme.AppCompat.Light.DarkActionBar"
-                app:theme="@style/Toolbar" />
-
-            <com.google.samples.apps.iosched.ui.widget.SlidingTabLayout
-                android:id="@+id/sliding_tabs"
-                android:layout_width="match_parent"
-                android:background="@color/fbutton_color_clouds"
-                android:layout_height="@dimen/tab_height" />
-
-        </LinearLayout>
-
-        <android.support.v4.view.ViewPager
-            android:id="@+id/pager"
-            android:layout_marginBottom="-48dp"
-            android:layout_below="@id/header"
+        <com.google.samples.apps.iosched.ui.widget.SlidingTabLayout
+            android:id="@+id/sliding_tabs"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="@dimen/tab_height"
+            android:background="@color/fbutton_color_clouds" />
 
-        </android.support.v4.view.ViewPager>
+    </LinearLayout>
 
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:paddingTop="16dp"
-        android:id="@+id/drawer_container"
-        android:layout_width="240dp"
+    <android.support.v4.view.ViewPager
+        android:id="@+id/pager"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:background="@color/drawer_background">
+        android:layout_below="@id/header">
 
-        <ImageView
-            android:id="@+id/drawer_image"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/nearfox_logo" />
+    </android.support.v4.view.ViewPager>
 
 
-        <ListView
-            android:layout_marginTop="16dp"
-            android:id="@+id/list_slidermenu"
-            android:layout_width="240dp"
-            android:layout_height="match_parent"
-            android:choiceMode="singleChoice"
-            android:dividerHeight="1dp"
-            android:layout_below="@+id/drawer_image" />
-    </RelativeLayout>
-
-</android.support.v4.widget.DrawerLayout>
+</RelativeLayout>

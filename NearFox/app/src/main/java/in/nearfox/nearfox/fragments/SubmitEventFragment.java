@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.DatePicker;
@@ -99,7 +100,21 @@ public class SubmitEventFragment extends Fragment implements DatePickerDialog.On
                         }
                     }
                 });
+                eventDescription.setOnTouchListener(new View.OnTouchListener() {
 
+                    public boolean onTouch(View view, MotionEvent event) {
+                        // TODO Auto-generated method stub
+                        if (view.getId() ==R.id.eventdescription) {
+                            view.getParent().requestDisallowInterceptTouchEvent(true);
+                            switch (event.getAction()&MotionEvent.ACTION_MASK){
+                                case MotionEvent.ACTION_UP:
+                                    view.getParent().requestDisallowInterceptTouchEvent(false);
+                                    break;
+                            }
+                        }
+                        return false;
+                    }
+                });
                 timeLayuout.findViewById(R.id.txtDateVal).setTag(timeLayuout);
                 timeLayuout.findViewById(R.id.txtDateVal).setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -169,7 +184,7 @@ public class SubmitEventFragment extends Fragment implements DatePickerDialog.On
 
                 if(layoutTiming.getTag() == null) {
                     layoutTiming.setTag(1);
-                    timeLayuout.findViewById(R.id.imgRemove).setVisibility(View.GONE);
+                    timeLayuout.findViewById(R.id.imgRemove).setVisibility(View.INVISIBLE);
                 } else {
                     int counter = (Integer) layoutTiming.getTag();
                     timeLayuout.findViewById(R.id.imgRemove).setVisibility(View.VISIBLE);
@@ -281,6 +296,8 @@ public class SubmitEventFragment extends Fragment implements DatePickerDialog.On
             contactNumber.setError("Please fill valid contact number");
             contactNumber.requestFocus();
         } else {
+            rootView.findViewById(R.id.btnSubmit).setEnabled(false);
+            rootView.findViewById(R.id.btnSubmit).setClickable(false);
             RestClient restClient = new RestClient(RestClient.BASE_URL1);
             Preference preference = new Preference(context);
             String dates = getDateTime();
@@ -303,12 +320,12 @@ public class SubmitEventFragment extends Fragment implements DatePickerDialog.On
         }
     }
 
-    private Callback<DataModels.HomeLocation> submitCallback = new Callback<DataModels.HomeLocation>() {
+    private Callback<DataModels.Location> submitCallback = new Callback<DataModels.Location>() {
         @Override
-        public void success(DataModels.HomeLocation homeLocation, Response response2) {
+        public void success(DataModels.Location homeLocation, Response response2) {
 
             if (homeLocation.isSuccess()) {
-                new ApplicationHelper(context).showMessageDialog("Your Event submitted successfully");
+                new ApplicationHelper(context).showMessageDialog(homeLocation.getMessage(), -1);
                 eventTitle.setText("");
                 eventDescription.setText("");
                 venue.setText("");
@@ -316,13 +333,21 @@ public class SubmitEventFragment extends Fragment implements DatePickerDialog.On
                 orgEmail.setText("");
                 contactNumber.setText("");
             } else {
-                new ApplicationHelper(context).showMessageDialog(response2.getReason());
+                new ApplicationHelper(context).showMessageDialog(response2.getReason(), -1);
             }
+
+            rootView.findViewById(R.id.btnSubmit).setEnabled(true);
+            rootView.findViewById(R.id.btnSubmit).setClickable(true);
         }
 
         @Override
         public void failure(RetrofitError error) {
-            new ApplicationHelper(context).showMessageDialog(error.getLocalizedMessage());
+            if(error.isNetworkError())
+                new ApplicationHelper(context).showMessageDialog("There seems to be a connectivity issue. Please check your internet connection.", -1);
+            else
+                new ApplicationHelper(context).showMessageDialog("Something wrong must have happened, please try again.", -1);
+            rootView.findViewById(R.id.btnSubmit).setEnabled(true);
+            rootView.findViewById(R.id.btnSubmit).setClickable(true);
         }
     };
 

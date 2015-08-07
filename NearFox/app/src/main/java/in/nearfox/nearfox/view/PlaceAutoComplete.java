@@ -1,8 +1,13 @@
 package in.nearfox.nearfox.view;
 
 import android.content.Context;
+import android.inputmethodservice.InputMethodService;
 import android.util.AttributeSet;
+import android.view.KeyEvent;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AutoCompleteTextView;
+import android.widget.TextView;
 
 import in.nearfox.nearfox.R;
 
@@ -17,6 +22,7 @@ public class PlaceAutoComplete extends AutoCompleteTextView {
         // TODO Auto-generated constructor stub
         this.context = context;
         setAdapter(new GooglePlacesAutocompleteAdapter(context, R.layout.list_item));
+        setSingleLine(true);
     }
 
     public PlaceAutoComplete(Context context, AttributeSet attrs) {
@@ -24,6 +30,7 @@ public class PlaceAutoComplete extends AutoCompleteTextView {
         // TODO Auto-generated constructor stub
         this.context = context;
         setAdapter(new GooglePlacesAutocompleteAdapter(context, R.layout.list_item));
+        setSingleLine(true);
     }
 
     public PlaceAutoComplete(Context context, AttributeSet attrs, int defStyle) {
@@ -31,12 +38,26 @@ public class PlaceAutoComplete extends AutoCompleteTextView {
         // TODO Auto-generated constructor stub
         this.context = context;
         setAdapter(new GooglePlacesAutocompleteAdapter(context, R.layout.list_item));
+        setSingleLine(true);
     }
 
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if(keyCode == KeyEvent.KEYCODE_ENTER)
+            return false;
+        return super.onKeyDown(keyCode, event);
+    }
 
+    @Override
+    public void onEditorAction(int actionCode) {
+        super.onEditorAction(actionCode);
+        if(actionCode == EditorInfo.IME_ACTION_DONE) {
+            InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(getWindowToken(), InputMethodManager.HIDE_IMPLICIT_ONLY);
+        }
+    }
 
-
-//    @Override
+    //    @Override
 //    protected CharSequence convertSelectionToString(Object selectedItem) {
 //        /**
 //         * Each item in the autocompetetextview suggestion list is a hashmap

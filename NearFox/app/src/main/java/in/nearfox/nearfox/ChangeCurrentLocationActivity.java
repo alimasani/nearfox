@@ -4,12 +4,14 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -20,6 +22,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.google.android.gms.maps.model.LatLng;
 
 import java.util.List;
 import java.util.Locale;
@@ -59,24 +63,52 @@ public class ChangeCurrentLocationActivity extends AppCompatActivity {
 
         currentLocation = (TextView) findViewById(R.id.txtCurrentLocation);
 
-        locManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        locListener = new MyLocationListener();
+
 
         findViewById(R.id.btnLetGo).setOnClickListener(letsGoListener);
 
 
-        Location location = getLastKnownLoaction(true);
-        if (location != null) {
-            currentLocation.setText(getCompleteAddressString(location.getLatitude(), location.getLongitude()));
-        }
         placeAutoComplete.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 placeAutoComplete.click = true;
+                placeAutoComplete.setSelection(0,0);
 
             }
         });
 
+
+        currentLocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Preference preference = new Preference(ChangeCurrentLocationActivity.this);
+                if (currentLocation.getText().toString().trim().length() > 0)
+                    preference.setCurrentLocation(currentLocation.getText().toString());
+                else {
+                    return;
+                }
+                if(preference.getCurrentLocation().trim().toLowerCase().contains("mumbai")) {
+                    LatLng location = new ApplicationHelper(ChangeCurrentLocationActivity.this).getLocationFromAddress(preference.getCurrentLocation());
+                    preference.setCurrentLocation(location);
+                    preference.setHomeLocation(location);
+                    if (getIntent().getBooleanExtra("isSignedIn", false))
+                        setCurrentLocation(preference.getCurrentLocation());
+                    else {
+                        finish();
+                        Intent intent = new Intent(ChangeCurrentLocationActivity.this, MainActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                        startActivity(intent);
+                        resetCurrentTimeStamp();
+                    }
+
+                } else {
+                    preference.setCurrentLocation("");
+                    new ApplicationHelper(ChangeCurrentLocationActivity.this).showMessageDialog("Please select your Location within Mumbai city", -1);
+                }
+            }
+        });
 
     }
 
@@ -86,25 +118,39 @@ public class ChangeCurrentLocationActivity extends AppCompatActivity {
         restClient.getApiService().setLocation(preference.getLoggedInEmail(), location, callback);
     }
 
-    retrofit.Callback<DataModels.HomeLocation> callback = new retrofit.Callback<DataModels.HomeLocation>() {
+    retrofit.Callback<DataModels.Location> callback = new retrofit.Callback<DataModels.Location>() {
         @Override
-        public void success(DataModels.HomeLocation news, Response response) {
+        public void success(DataModels.Location news, Response response) {
             if(news.isSuccess()) {
-                new ApplicationHelper(ChangeCurrentLocationActivity.this).showMessageDialog("Your location updated successfully").setOnDismissListener(new DialogInterface.OnDismissListener() {
-                    @Override
-                    public void onDismiss(DialogInterface dialogInterface) {
-                        ;
-                    }
-                });
+
+                finish();
+                Intent intent = new Intent(ChangeCurrentLocationActivity.this, MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                startActivity(intent);
+                resetCurrentTimeStamp();
+
+                intent = new Intent(ChangeCurrentLocationActivity.this, DialogActivity.class);
+                intent.putExtra("title", "NearFox");
+                intent.putExtra("message", "Your location updated successfully");
+                intent.putExtra("positive", "OK");
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivityForResult(intent, 108);
 
             } else {
-                new ApplicationHelper(ChangeCurrentLocationActivity.this).showMessageDialog(response.getReason());
+                new ApplicationHelper(ChangeCurrentLocationActivity.this).showMessageDialog(news.getMessage(), -1);
+                findViewById(R.id.btnLetGo).setEnabled(true);
+                findViewById(R.id.btnLetGo).setClickable(true);
             }
         }
 
+
         @Override
         public void failure(RetrofitError error) {
-            new ApplicationHelper(ChangeCurrentLocationActivity.this).showMessageDialog(error.toString());
+            new ApplicationHelper(ChangeCurrentLocationActivity.this).showMessageDialog(error.toString(), -1);
+            findViewById(R.id.btnLetGo).setEnabled(true);
+            findViewById(R.id.btnLetGo).setClickable(true);
         }
     };
 
@@ -112,61 +158,73 @@ public class ChangeCurrentLocationActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        locManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        locListener = new MyLocationListener();
+        new Handler().post(new Runnable() {
+            @Override
+            public void run() {
 
-        if (!locManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-            //Ask the user to enable GPS
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("Location Manager");
-            builder.setMessage("Would you like to enable GPS?");
-            builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    //Launch settings, allowing user to make a change
-                    Intent i = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-                    startActivity(i);
+                if (!locManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+                    //Ask the user to enable GPS
+                    AlertDialog.Builder builder = new AlertDialog.Builder(ChangeCurrentLocationActivity.this);
+                    builder.setTitle("Location Manager");
+                    builder.setMessage("Would you like to enable GPS?");
+                    builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            //Launch settings, allowing user to make a change
+                            Intent i = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                            startActivity(i);
+                        }
+                    });
+                    builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            //No location service, no Activity
+                            dialog.dismiss();
+                            Location location = getLastKnownLoaction(true);
+                            if (location != null) {
+                                currentLocation.setText(getCompleteAddressString(location.getLatitude(), location.getLongitude()));
+                            }
+                        }
+                    });
+                    builder.create().show();
+                } else {
+
+                    boolean gps_enabled = false, network_enabled = false;
+                    try {
+                        gps_enabled = locManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+                    } catch (Exception ex) {
+                    }
+                    try {
+                        network_enabled = locManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+                    } catch (Exception ex) {
+                    }
+
+                    // don't start listeners if no provider is enabled
+                    if (!gps_enabled && !network_enabled) {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(ChangeCurrentLocationActivity.this);
+                        builder.setTitle("Attention!");
+                        builder.setMessage("Sorry, location is not determined. Please enable location providers");
+                        builder.create().show();
+                    }
+
+                    if (gps_enabled) {
+                        locManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locListener);
+                    }
+                    if (network_enabled) {
+                        locManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locListener);
+                    }
                 }
-            });
-            builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    //No location service, no Activity
-                    dialog.dismiss();
-                }
-            });
-            builder.create().show();
-        } else {
 
-            boolean gps_enabled = false, network_enabled = false;
-            try {
-                gps_enabled = locManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
-            } catch (Exception ex) {
             }
-            try {
-                network_enabled = locManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
-            } catch (Exception ex) {
-            }
-
-            // don't start listeners if no provider is enabled
-            if (!gps_enabled && !network_enabled) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setTitle("Attention!");
-                builder.setMessage("Sorry, location is not determined. Please enable location providers");
-                builder.create().show();
-            }
-
-            if (gps_enabled) {
-                locManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locListener);
-            }
-            if (network_enabled) {
-                locManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locListener);
-            }
-        }
-
+        });
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        if(locManager != null)
         locManager.removeUpdates(locListener);
     }
 
@@ -244,7 +302,7 @@ public class ChangeCurrentLocationActivity extends AppCompatActivity {
     public boolean onKeyDown(int keyCode, KeyEvent event) {
 
         if(keyCode == KeyEvent.KEYCODE_BACK){
-            startActivity(new Intent(ChangeCurrentLocationActivity.this, MainActivity.class));
+
             finish();
         }
         return super.onKeyDown(keyCode, event);
@@ -265,12 +323,32 @@ public class ChangeCurrentLocationActivity extends AppCompatActivity {
                 builder.create().show();
                 return;
             }
+            view.setEnabled(false);
+            view.setClickable(false);
+            if(preference.getCurrentLocation().trim().toLowerCase().contains("mumbai")) {
+                LatLng location = new ApplicationHelper(ChangeCurrentLocationActivity.this).getLocationFromAddress(preference.getCurrentLocation());
+                preference.setCurrentLocation(location);
+                preference.setHomeLocation(location);
+                if (getIntent().getBooleanExtra("isSignedIn", false))
+                    setCurrentLocation(preference.getCurrentLocation());
+                else {
+                    Intent intent = new Intent(ChangeCurrentLocationActivity.this, MainActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                    startActivity(intent);
+                    resetCurrentTimeStamp();
+                    finish();
+                    view.setEnabled(true);
+                    view.setClickable(true);
+                }
 
-            if(getIntent().getBooleanExtra("isSignedIn", false))
-                setCurrentLocation(preference.getCurrentLocation());
-
-            startActivity(new Intent(ChangeCurrentLocationActivity.this, MainActivity.class));
-            finish();
+            } else {
+                preference.setCurrentLocation("");
+                new ApplicationHelper(ChangeCurrentLocationActivity.this).showMessageDialog("Please select your Location within Mumbai city", -1);
+                view.setEnabled(true);
+                view.setClickable(true);
+            }
 
         }
     };
@@ -293,5 +371,19 @@ public class ChangeCurrentLocationActivity extends AppCompatActivity {
 
     }
 
+    /*
+     * To Get updated Records we reset current time stamps
+     */
+    private void resetCurrentTimeStamp(){
+        try {
+            SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.CURRENT_TIME_STAMP), Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+
+            editor.putString(getString(R.string.CURRENT_TIME_STAMP_NEWS), "0.0");
+            editor.apply();
+        } catch (Exception e) {
+            Log.d("RestTime", e.toString());
+        }
+    }
 
 }

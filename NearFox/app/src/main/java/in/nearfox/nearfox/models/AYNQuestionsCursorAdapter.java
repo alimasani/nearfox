@@ -4,6 +4,7 @@ package in.nearfox.nearfox.models;
 import android.content.Context;
 import android.database.Cursor;
 import android.support.v4.widget.CursorAdapter;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -151,7 +152,7 @@ public class AYNQuestionsCursorAdapter extends CursorAdapter {
             viewHolder.comment.setText(cursor.getString(answers));
 
         viewHolder.id.setText(cursor.getString(ayn_question_id));
-
+        Log.d("Show Ayn", cursor.getString(ayn_question_id));
         if (cursor.getInt(user_up_voted) > 0) {
             viewHolder.whetherUpvoted.setText("TRUE");
 //            viewHolderAYN.upVoteImage.setBackgroundColor(context.getResources().getColor(R.color.fbutton_default_color));

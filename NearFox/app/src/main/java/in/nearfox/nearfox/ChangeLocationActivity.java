@@ -226,28 +226,29 @@ public class ChangeLocationActivity extends AppCompatActivity {
         restClient.getApiService().setLocation(preference.getLoggedInEmail(), location, callback);
     }
 
-    retrofit.Callback<DataModels.HomeLocation> callback = new retrofit.Callback<DataModels.HomeLocation>() {
+    retrofit.Callback<DataModels.Location> callback = new retrofit.Callback<DataModels.Location>() {
         @Override
-        public void success(DataModels.HomeLocation news, Response response) {
+        public void success(DataModels.Location news, Response response) {
             if(news.isSuccess()) {
-                new ApplicationHelper(ChangeLocationActivity.this).showMessageDialog("Your location updated successfully").setOnDismissListener(new DialogInterface.OnDismissListener() {
-                    @Override
-                    public void onDismiss(DialogInterface dialogInterface) {
-                        finish();
-                    }
-                });
 
+                finish();
+
+                Intent intent = new Intent(ChangeLocationActivity.this, DialogActivity.class);
+                intent.putExtra("title", "NearFox");
+                intent.putExtra("message", "Your location updated successfully");
+                intent.putExtra("positive", "OK");
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivityForResult(intent, 108);
             } else {
-                new ApplicationHelper(ChangeLocationActivity.this).showMessageDialog(response.getReason());
+                new ApplicationHelper(ChangeLocationActivity.this).showMessageDialog(response.getReason(), -1);
             }
         }
 
         @Override
         public void failure(RetrofitError error) {
-            new ApplicationHelper(ChangeLocationActivity.this).showMessageDialog(error.toString());
+            new ApplicationHelper(ChangeLocationActivity.this).showMessageDialog(error.toString(), -1);
         }
     };
-
 
     @Override
     protected void onDestroy() {

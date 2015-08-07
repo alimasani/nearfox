@@ -37,7 +37,7 @@
                         android:layout_alignRight="@+id/single_event_image_view"
                         android:layout_marginBottom="10dp"
                         android:layout_marginRight="10dp"
-                        android:src="@drawable/abc_ic_menu_share_mtrl_alpha"
+                        android:src="@drawable/ic_share"
 
                         />
 
@@ -308,12 +308,13 @@
         app:theme="@style/Toolbar">
 
         <ImageView
-            android:id="@+id/favourite"
+            android:id="@+id/favorite_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
+            android:layout_marginBottom="10dp"
             android:layout_marginRight="10dp"
-            android:src="@drawable/abc_btn_rating_star_off_mtrl_alpha"
+            android:src="@drawable/ic_favorite"
 
             />
     </android.support.v7.widget.Toolbar>

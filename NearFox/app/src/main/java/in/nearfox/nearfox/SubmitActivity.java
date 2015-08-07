@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.crashlytics.android.Crashlytics;
 import com.facebook.CallbackManager;
+import com.facebook.FacebookSdk;
 import com.facebook.login.LoginManager;
 import com.google.samples.apps.iosched.ui.widget.SlidingTabLayout;
 import com.mixpanel.android.mpmetrics.MixpanelAPI;
@@ -27,7 +28,10 @@ import in.nearfox.nearfox.authentication.LoginActivity;
 import in.nearfox.nearfox.authentication.gplus.GPlusLogoutMoitor;
 import in.nearfox.nearfox.fragments.AYNFragment;
 import in.nearfox.nearfox.utilities.LocationHelper;
+import in.nearfox.nearfox.utilities.Preference;
 import io.fabric.sdk.android.Fabric;
+
+import static in.nearfox.nearfox.authentication.gplus.GPlusMonitor.mGoogleApiClient;
 
 
 public class SubmitActivity extends AppCompatActivity implements NavigationDrawer.LogoutListener {
@@ -59,7 +63,7 @@ public class SubmitActivity extends AppCompatActivity implements NavigationDrawe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.submitactivity);
-
+       new Preference(SubmitActivity.this).setSubmitClicked(false);
 
         /**
          * Main init starts
@@ -92,6 +96,15 @@ public class SubmitActivity extends AppCompatActivity implements NavigationDrawe
          /*  initializing Facebook and google
          **/
         signedIn = getUser(this);
+
+
+        if (signedIn) {
+            FacebookSdk.sdkInitialize(getApplicationContext());
+            callbackManager = CallbackManager.Factory.create();
+            gPlusLogoutMoitor = new GPlusLogoutMoitor(this, mGoogleApiClient);
+        } else {
+        }
+
 
 
         Log.d(TAG, "adding navigation dawer");
@@ -148,7 +161,7 @@ public class SubmitActivity extends AppCompatActivity implements NavigationDrawe
             @Override
             public void onClick(View v) {
 
-                startActivity(new Intent(SubmitActivity.this, MainActivity.class));
+
                 finish();
             }
         });
@@ -157,7 +170,7 @@ public class SubmitActivity extends AppCompatActivity implements NavigationDrawe
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if(keyCode == KeyEvent.KEYCODE_BACK){
-            startActivity(new Intent(SubmitActivity.this, MainActivity.class));
+
             finish();
         }
         return super.onKeyDown(keyCode, event);
@@ -370,11 +383,7 @@ public class SubmitActivity extends AppCompatActivity implements NavigationDrawe
             editor.apply();
 //            Log.d(TAG, "logging out from google") ;
         }
-        Intent intent = new Intent(this, MainActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-        startActivity(intent);
+        finish();
     }
 
     private String stringFromResource(int id) {

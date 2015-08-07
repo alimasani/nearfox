@@ -196,7 +196,7 @@ public class DBManager {
             contentValues.put(DBHelper.NEWS_EXCERPT, news.getNews_excerpt());
             contentValues.put(DBHelper.SOURCE_NAME, news.getSource_name());
 
-            Log.d(TAG, "title: " + news.getTitle());
+            Log.d(TAG, "Insert: " + contentValues.toString());
 
             database.insert(DBHelper.NEWS_TABLE_NAME, null, contentValues);
         }
@@ -204,7 +204,7 @@ public class DBManager {
 
 
     public Cursor getAYNQuestionsList() {
-        return database.rawQuery("SELECT * FROM " + DBHelper.AYN_QUESTIONS_TABLE_NAME + " ;", null);
+        return database.rawQuery("SELECT * FROM " + DBHelper.AYN_QUESTIONS_TABLE_NAME + " order by " + DBHelper.AYN_QUESTION_ID + " desc ;", null);
     }
 
     public void insertAYNQuestions(ArrayList<DataModels.AYNSingleQuestionAbstract> aynQuestionsArray) {
@@ -225,10 +225,32 @@ public class DBManager {
             contentValues.put(DBHelper.ANSWERS, aynSingleQuestionAbstract.getAnswers());
             contentValues.put(DBHelper.SHARED, aynSingleQuestionAbstract.isShared());
             contentValues.put(DBHelper.SHARES, aynSingleQuestionAbstract.getShares());
-
+            Log.d("AYN", contentValues.toString());
             database.insert(DBHelper.AYN_QUESTIONS_TABLE_NAME, null, contentValues);
         }
     }
+
+    public void saveNewQuestion(String questionId, String content, String author) {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(DBHelper.AYN_QUESTION_ID, questionId);
+        contentValues.put(DBHelper.CONTENT, content);
+        contentValues.put(DBHelper.QUESTION_AUTHOR, author);
+        contentValues.put(DBHelper.PERIOD, "just now");
+        contentValues.put(DBHelper.THUMBNAIL_URL, "");
+//            contentValues.put(DBHelper.IMAGEURL, aynSingleQuestionAbstract.getImageURL());
+        contentValues.put(DBHelper.USER_UP_VOTED, false);
+        contentValues.put(DBHelper.UP_VOTED, 0);
+        contentValues.put(DBHelper.USER_DOWN_VOTED, false);
+        contentValues.put(DBHelper.DOWN_VOTED, 0);
+        contentValues.put(DBHelper.ANSWERED, false);
+        contentValues.put(DBHelper.ANSWERS, "0");
+        contentValues.put(DBHelper.SHARED, true);
+        contentValues.put(DBHelper.SHARES, 0);
+        Log.d("AYN", contentValues.toString());
+        database.insert(DBHelper.AYN_QUESTIONS_TABLE_NAME, null, contentValues);
+    }
+
+
 
     public void emptyAYNQustionstable() {
         database.delete(DBHelper.AYN_QUESTIONS_TABLE_NAME, null, null);

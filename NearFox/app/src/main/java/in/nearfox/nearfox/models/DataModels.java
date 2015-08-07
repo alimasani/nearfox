@@ -1331,6 +1331,70 @@ public class DataModels {
         }
     }
 
+    public class Location {
+        @Expose
+        private boolean success;
+
+        @Expose
+        private String message;
+
+        public void setSuccess(boolean success) {
+            this.success = success;
+        }
+
+        public boolean isSuccess() {
+
+            return success;
+        }
+
+        public void setMessage(String message) {
+            this.message = message;
+        }
+
+        public String getMessage() {
+
+            return message;
+        }
+    }
+
+    public class SubmitAynQuestion {
+        @Expose
+        private boolean success;
+
+        @Expose
+        private String message;
+
+        @Expose
+        private String question_id;
+
+        public void setSuccess(boolean success) {
+            this.success = success;
+        }
+
+        public boolean isSuccess() {
+
+            return success;
+        }
+
+        public void setMessage(String message) {
+            this.message = message;
+        }
+
+        public String getMessage() {
+
+            return message;
+        }
+
+        public void setQuestionId(String question_id) {
+            this.question_id = question_id;
+        }
+
+        public String getQuestion_id() {
+
+            return question_id;
+        }
+    }
+
     public Event returnEventObject() {
         return (new Event());
     }

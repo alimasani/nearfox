@@ -31,9 +31,11 @@ import java.util.Arrays;
 import in.nearfox.nearfox.MainActivity;
 import in.nearfox.nearfox.NoActionActivity;
 import in.nearfox.nearfox.R;
+import in.nearfox.nearfox.SubmitActivity;
 import in.nearfox.nearfox.authentication.gplus.GPlusMonitor;
 import in.nearfox.nearfox.gcm.GCMHandler;
 import in.nearfox.nearfox.utilities.LocationHelper;
+import in.nearfox.nearfox.utilities.Preference;
 
 public class LoginActivity extends Activity {
 
@@ -297,6 +299,8 @@ public class LoginActivity extends Activity {
      */
     public void startAnyActivity(boolean which) {
 
+
+
         Intent intent = new Intent(this, MainActivity.class);
 
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -309,7 +313,17 @@ public class LoginActivity extends Activity {
                 Log.d(TAG, "regid not found, registering on gcm1");
                 gcmHandler = new GCMHandler(this, gName, "", gLink, gEmail, gImageURL, getResources().getString(R.string.SELECTED_GOOGLE), locationHelper);
             } else {
-
+//                Preference preference = new Preference(LoginActivity.this);
+//                if(preference.isSubmitClicked()){
+//
+//                    intent = new Intent(this, SubmitActivity.class);
+//                    intent.putExtra("index", preference.getLastUsed());
+//                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//                    intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+//                    startActivity(intent);
+//                    return;
+//                }
                 Log.d(TAG, "regid found during startActivity");
                 intent.putExtra(getResources().getString(R.string.GOOGLE_OR_FACEBOOK), getResources().getString(R.string.SELECTED_GOOGLE));
                 intent.putExtra(getResources().getString(R.string.USER_NAME), gName);
@@ -325,6 +339,19 @@ public class LoginActivity extends Activity {
                 Log.d(TAG, "regid not found, registering on gcm2");
                 gcmHandler = new GCMHandler(this, fName, fLastName, fLink, fEmail, fImageURL, getResources().getString(R.string.SELECTED_FACEBOOK), locationHelper);
             } else {
+//                Preference preference = new Preference(context);
+//                if(preference.isSubmitClicked()){
+////            preference.setSubmitClicked(false);
+//                    Intent intent = new Intent(context, SubmitActivity.class);
+//                    intent.putExtra("index", preference.getLastUsed());
+//                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//                    intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+//                    ((Activity) context).findViewById(R.id.loader_container).setVisibility(View.GONE);
+//                    context.startActivity(intent);
+//                    return;
+//                }
+//
 
                 intent.putExtra(getResources().getString(R.string.GOOGLE_OR_FACEBOOK), getResources().getString(R.string.SELECTED_FACEBOOK));
                 intent.putExtra(getResources().getString(R.string.USER_NAME), fName);
